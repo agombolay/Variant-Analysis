@@ -5,10 +5,11 @@
 #This script uses Trimmomatic program to remove Illumina adapter sequences and trim reads based on quality
 #The goal of this pre-processing step is to increase mapping percentage and also decrease incorrect mappings
 
-#Usage statement of the program
+#Usage statement
 function usage () {
-        echo "Usage: call-variants.sh [-f] 'FASTQ.GZ' [-r] '.FASTQ.GZ' [-t] '/path/to/Trimmomatic/' [-h]
-              -f Path to input forward FASTQ.GZ files ('/path/to/forward.fastq.gz')
+        echo "Usage: call-variants.sh [-s] 'sample' [-f] 'FASTQ.GZ' [-r] '.FASTQ.GZ' [-t] '/path/to/Trimmomatic/' [-h]
+              -s Sample name of sequenced library; used to name output files
+	      -f Path to input forward FASTQ.GZ files ('/path/to/forward.fastq.gz')
 	      -r Path to input reverse FASTQ.GZ files ('/path/to/reverse.fastq.gz')
 	      -t '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
@@ -25,9 +26,8 @@ do
     esac
 done
 
-#Exit program if user specifies [-h]
-if [ "$1" == "-h" ];
-then
+#Exit program if [-h]
+if [ "$1" == "-h" ]; then
         exit
 fi
 
