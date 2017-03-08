@@ -17,10 +17,11 @@ function usage () {
 }
 
 #Command-line options
-while getopts "f1:f2:r1:r2:t:h" opt;
+while getopts "s:f1:f2:r1:r2:t:h" opt;
 do
     case $opt in
-        f1 ) inputForward1=$OPTARG ;;
+        s ) sample=$OPTARG ;;
+	f1 ) inputForward1=$OPTARG ;;
 	f2 ) inputForward2=$OPTARG ;;
         r1 ) inputReverse1=$OPTARG ;;
 	r2 ) inputReverse2=$OPTARG ;;
