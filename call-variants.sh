@@ -61,4 +61,4 @@ samtools view -b -S $sample.sam > $sample.bam
 samtools sort -o $sample-sorted.bam $sample.bam
 
 #Create index file
-#samtools index $sample-sorted.bam
+samtools index $sample-sorted.bam
