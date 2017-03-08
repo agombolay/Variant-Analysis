@@ -35,20 +35,23 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
+#Concatenate FASTQ files from lanes 1 and 2
+cat $inputForward1 $inputForward2 > $sample-R1.fq.gz
+cat $inputReverse1 $inputReverse2 > $sample-R2.fq.gz
+
 #STEP 1
-#Trim FASTQ files based on quality and Illumina adapter content (adapter read-through)
-java -jar $path/trimmomatic-0.36.jar PE -phred33 $inputForward $inputReverse $sample-ForwardPaired.fastq.gz \
-$sample-ForwardUnpaired.fastq.gz $sample-ReversePaired.fastq.gz $sample-ReverseUnpaired.fastq.gz \
-ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75
+#Trim FASTQ files based on quality and Illumina adapter content
+java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
+$sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.q.gz \
+ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75
 
 #Unzip files
-gunzip $sample-ForwardPaired.fastq.gz $sample-ForwardUnpaired.fastq.gz \
-$sample-ReversePaired.fastq.gz $sample-ReverseUnpaired.fastq.gz
+gunzip $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz
 
 #STEP 2
 #Align trimmed read pairs to reference genome of interest
-bowtie2 -x $index -1 $sample-ForwardPaired.fastq -2 $sample-ReversePaired.fastq \
--U $sample-ForwardUnpaired.fastq $sample-ReverseUnpaired.fastq -S $sample.sam
+bowtie2 -x $index -1 $sample-R1Paired.fastq -2 $sample-R2Paired.fastq \
+-U $sample-R1Unpaired.fastq $sample-R2Unpaired.fastq -S $sample.sam
 
 #SAM to BAM
 samtools view -b -S $sample.sam > $sample.bam
