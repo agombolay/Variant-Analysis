@@ -9,8 +9,8 @@
 function usage () {
         echo "Usage: call-variants.sh [-i] 'FASTQ' [-t] '/path/to/Trimmomatic/' [-h]
               -f Path to input forward FASTQ.GZ files ('/path/to/forward.fastq.gz')
-              -r Path to input reverse FASTQ.GZ files ('/path/to/reverse.fastq.gz')
-		          -t '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
+	      -r Path to input reverse FASTQ.GZ files ('/path/to/reverse.fastq.gz')
+	      -t '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
 
 #Command-line options
