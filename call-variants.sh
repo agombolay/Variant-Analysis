@@ -46,10 +46,11 @@ $sample-ReversePaired.fastq.gz $sample-ReverseUnpaired.fastq.gz
 bowtie2 -x $index -1 $sample-ForwardPaired.fastq -2 $sample-ReversePaired.fastq \
 -U $sample-ForwardUnpaired.fastq $sample-ReverseUnpaired.fastq -S $sample.sam
 
-#Convert SAM file to BAM and sort intermediate BAM file
-samtools view -ShuF4 $intermediateSAM | samtools sort - -o $sortedBAM
+#SAM to BAM
+samtools view -b -S $sample.sam > $sample.bam
+
+#Sort BAM file
+samtools sort -o $sample-sorted.bam $sample.bam
 
 #Create index file
-samtools index $sortedBAM
-
-
+samtools index $sample-sorted.bam
