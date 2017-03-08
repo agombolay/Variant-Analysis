@@ -9,11 +9,11 @@
 function usage () {
         echo "Usage: call-variants.sh [-s] 'sample' [-f] 'FASTQ.GZ' [-r] '.FASTQ.GZ' [-t] '/path/to/Trimmomatic/' [-h]
               -s Sample name of sequenced library; used to name output files
-	      -f1 Path to input forward FASTQ.GZ files, lane 1 ('/path/to/forward.fastq.gz')
-	      -f2 Path to input forward FASTQ.GZ files, lane 2 ('/path/to/forward.fastq.gz')
-	      -r1 Path to input reverse FASTQ.GZ files, lane 1 ('/path/to/reverse.fastq.gz')
-	      -r2 Path to input reverse FASTQ.GZ files, lane 2 ('/path/to/reverse.fastq.gz')
-	      -t Path to Trimmomatic ('/projects/home/agombolay3/data/bin/Trimmomatic-0.36')"
+	      -f1 Path to input R1 FASTQ.GZ files, lane 1 ('/path/to/R1.fastq.gz')
+	      -f2 Path to input R1 FASTQ.GZ files, lane 2 ('/path/to/R1.fastq.gz')
+	      -r1 Path to input R2 FASTQ.GZ files, lane 1 ('/path/to/R2.fastq.gz')
+	      -r2 Path to input R2 FASTQ.GZ files, lane 2 ('/path/to/R2.fastq.gz')
+	      -t '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
 
 #Command-line options
@@ -41,23 +41,23 @@ cat $inputReverse1 $inputReverse2 > $sample-R2.fq.gz
 
 #STEP 1
 #Trim FASTQ files based on quality and Illumina adapter content
-java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
-$sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.q.gz \
-ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75
+#java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
+#$sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.q.gz \
+#ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75
 
 #Unzip files
-gunzip $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz
+#gunzip $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz
 
 #STEP 2
 #Align trimmed read pairs to reference genome of interest
-bowtie2 -x $index -1 $sample-R1Paired.fastq -2 $sample-R2Paired.fastq \
--U $sample-R1Unpaired.fastq $sample-R2Unpaired.fastq -S $sample.sam
+#bowtie2 -x $index -1 $sample-R1Paired.fastq -2 $sample-R2Paired.fastq \
+#-U $sample-R1Unpaired.fastq $sample-R2Unpaired.fastq -S $sample.sam
 
 #SAM to BAM
-samtools view -b -S $sample.sam > $sample.bam
+#samtools view -b -S $sample.sam > $sample.bam
 
 #Sort BAM file
-samtools sort -o $sample-sorted.bam $sample.bam
+#samtools sort -o $sample-sorted.bam $sample.bam
 
 #Create index file
-samtools index $sample-sorted.bam
+#samtools index $sample-sorted.bam
