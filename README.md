@@ -1,7 +1,6 @@
 # Variant-Analysis
 
-1. Quality trimming
-2. Align to reference
-3. GATK Best Practice
-4. Variant Calling
-5. VQSR
+1. Trim: Trimmomatic
+2. Alignment: Bowtie2
+3. Process data: Picard Tools
+4. Variant calling: GATK Tools
