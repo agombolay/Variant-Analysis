@@ -17,7 +17,7 @@ function usage () {
 }
 
 #Command-line options
-while getopts "a:b:c:d:s:h" opt;
+while getopts "a:b:c:d:s:p:h" opt;
 do
     case $opt in
 	a ) inputForward1=$OPTARG ;;
@@ -25,7 +25,7 @@ do
         c ) inputReverse1=$OPTARG ;;
 	d ) inputReverse2=$OPTARG ;;
 	s ) sample=$OPTARG ;;
-        #t ) path=$OPTARG ;;
+        p ) path=$OPTARG ;;
         #Print usage statement
         h ) usage ;;
     esac
