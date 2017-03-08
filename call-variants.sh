@@ -31,7 +31,17 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
+#STEP 1
 #Trim FASTQ files based on quality and Illumina adapter content (adapter read-through)
 java -jar $path/trimmomatic-0.36.jar PE -phred33 $inputForward $inputReverse $sample-ForwardPaired.fastq.gz \
 $sample-ForwardUnpaired.fastq.gz $sample-ReversePaired.fastq.gz $sample-ReverseUnpaired.fastq.gz \
 ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75
+
+#Unzip files
+gunzip $sample-ForwardPaired.fastq.gz $sample-ForwardUnpaired.fastq.gz \
+$sample-ReversePaired.fastq.gz $sample-ReverseUnpaired.fastq.gz
+
+#STEP 2
+#Align trimmed read pairs to reference genome of interest
+bowtie2 -x $index -1 $sample-ForwardPaired.fastq -2 $sample-ReversePaired.fastq \
+-U $sample-ForwardUnpaired.fastq $sample-ReverseUnpaired.fastq -S $sample.sam
