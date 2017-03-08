@@ -7,24 +7,24 @@
 
 #Usage statement
 function usage () {
-        echo "Usage: call-variants.sh [-s] 'sample' [-f] 'FASTQ.GZ' [-r] '.FASTQ.GZ' [-t] '/path/to/Trimmomatic/' [-h]
-              -s Sample name of sequenced library; used to name output files
+        echo "Usage: call-variants.sh [-s] 'sample' [-abcd] 'FASTQ.GZ' [-p] '/path/to/Trimmomatic/' [-h]
 	      -a Path to input R1 FASTQ.GZ files, lane 1 ('/path/to/R1.fastq.gz')
 	      -b Path to input R1 FASTQ.GZ files, lane 2 ('/path/to/R1.fastq.gz')
 	      -c Path to input R2 FASTQ.GZ files, lane 1 ('/path/to/R2.fastq.gz')
 	      -d Path to input R2 FASTQ.GZ files, lane 2 ('/path/to/R2.fastq.gz')
-	      -t '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
+	      -s Sample name of sequenced library; used to name output files
+	      -p '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
 
 #Command-line options
-while getopts "s:a:b:c:d:h" opt;
+while getopts "a:b:c:d:s:h" opt;
 do
     case $opt in
-        s ) sample=$OPTARG ;;
 	a ) inputForward1=$OPTARG ;;
 	b ) inputForward2=$OPTARG ;;
         c ) inputReverse1=$OPTARG ;;
 	d ) inputReverse2=$OPTARG ;;
+	s ) sample=$OPTARG ;;
         #t ) path=$OPTARG ;;
         #Print usage statement
         h ) usage ;;
