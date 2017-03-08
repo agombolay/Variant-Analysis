@@ -51,8 +51,8 @@ fi
 
 #STEP 2
 #Align trimmed read pairs to reference genome of interest
-bowtie2 -x $index -1 $sample-R1Paired.fastq -2 $sample-R2Paired.fastq \
--U $sample-R1Unpaired.fastq $sample-R2Unpaired.fastq -S $sample.sam
+bowtie2 -x $index -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq \
+-U $sample-R1Unpaired.fq $sample-R2Unpaired.fq -S $sample.sam
 
 #SAM to BAM
 #samtools view -b -S $sample.sam > $sample.bam
