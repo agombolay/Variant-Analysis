@@ -47,12 +47,12 @@ fi
 #ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:75
 
 #Unzip files
-gunzip $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz
+#gunzip $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz
 
 #STEP 2
 #Align trimmed read pairs to reference genome of interest
-#bowtie2 -x $index -1 $sample-R1Paired.fastq -2 $sample-R2Paired.fastq \
-#-U $sample-R1Unpaired.fastq $sample-R2Unpaired.fastq -S $sample.sam
+bowtie2 -x $index -1 $sample-R1Paired.fastq -2 $sample-R2Paired.fastq \
+-U $sample-R1Unpaired.fastq $sample-R2Unpaired.fastq -S $sample.sam
 
 #SAM to BAM
 #samtools view -b -S $sample.sam > $sample.bam
