@@ -9,22 +9,22 @@
 function usage () {
         echo "Usage: call-variants.sh [-s] 'sample' [-f] 'FASTQ.GZ' [-r] '.FASTQ.GZ' [-t] '/path/to/Trimmomatic/' [-h]
               -s Sample name of sequenced library; used to name output files
-	      -f1 Path to input R1 FASTQ.GZ files, lane 1 ('/path/to/R1.fastq.gz')
-	      -f2 Path to input R1 FASTQ.GZ files, lane 2 ('/path/to/R1.fastq.gz')
-	      -r1 Path to input R2 FASTQ.GZ files, lane 1 ('/path/to/R2.fastq.gz')
-	      -r2 Path to input R2 FASTQ.GZ files, lane 2 ('/path/to/R2.fastq.gz')
+	      -a Path to input R1 FASTQ.GZ files, lane 1 ('/path/to/R1.fastq.gz')
+	      -b Path to input R1 FASTQ.GZ files, lane 2 ('/path/to/R1.fastq.gz')
+	      -c Path to input R2 FASTQ.GZ files, lane 1 ('/path/to/R2.fastq.gz')
+	      -d Path to input R2 FASTQ.GZ files, lane 2 ('/path/to/R2.fastq.gz')
 	      -t '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
 
 #Command-line options
-while getopts "s:f1:f2:r1:r2:h" opt;
+while getopts "s:a:b:c:d:h" opt;
 do
     case $opt in
         s ) sample=$OPTARG ;;
-	f1 ) inputForward1=$OPTARG ;;
-	f2 ) inputForward2=$OPTARG ;;
-        r1 ) inputReverse1=$OPTARG ;;
-	r2 ) inputReverse2=$OPTARG ;;
+	a ) inputForward1=$OPTARG ;;
+	b ) inputForward2=$OPTARG ;;
+        c ) inputReverse1=$OPTARG ;;
+	d ) inputReverse2=$OPTARG ;;
         #t ) path=$OPTARG ;;
         #Print usage statement
         h ) usage ;;
