@@ -1,3 +1,6 @@
+#Time
+Trimming and alignment for one library: 92m27.523s
+
 #Alignment Results
 
 ##__YS486-1__:  
