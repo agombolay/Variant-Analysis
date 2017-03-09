@@ -54,13 +54,8 @@ fi
 #bowtie2 -x sacCer2 -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq \
 #-U $sample-R1Unpaired.fq,$sample-R2Unpaired.fq -S $sample.sam
 
-samtools view -b -S $sample.sam | samtools sort -o $sample-sorted.bam -
-
-#SAM to BAM
-#samtools view -b -S $sample.sam > $sample.bam
-
-#Sort BAM file
-#samtools sort -o $sample-sorted.bam $sample.bam
+#Convert SAM file to BAM and sort BAM file
+samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 
 #Create index file
-samtools index $sample-sorted.bam
+samtools index $sample.bam
