@@ -1,12 +1,12 @@
-#Time
-Trimming and alignment for one library: 92m27.523s
-
 #Alignment Results
 
 ##__YS486-1__:  
 99.24% overall alignment rate  
 Number of mapped reads: 11,946,179  
 Number of unmapped reads: 91,457
+
+###Time
+Trimming and alignment: 92m27.523s
 
 ```
 samtools view -f 4 YS486-1.bam > YS486-1-unmapped.bam
