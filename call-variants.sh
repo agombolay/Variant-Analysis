@@ -47,7 +47,7 @@ $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R
 ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
 
 #Unzip files
-gunzip $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz
+gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
 
 #STEP 2
 #Align trimmed forward and reverse reads to reference genome of interest
