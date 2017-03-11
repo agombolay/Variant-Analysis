@@ -22,9 +22,9 @@ samtools bam2fq YS486-1-unmapped.bam > YS486-1-unmapped.fastq
 ```
 
 ##__YS486-2__:  
-99.27% overall alignment rate  
-Number of mapped reads: 11,477,747  
-Number of unmapped reads: 84,002  
+99.26% overall alignment rate  
+Number of mapped reads: 11,449,813
+Number of unmapped reads: 84,981  
 
 ```
 samtools view -b -f 4 YS486-2.bam > YS486-2-unmapped.bam
