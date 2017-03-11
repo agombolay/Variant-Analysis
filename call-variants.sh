@@ -37,7 +37,8 @@ if [ "$1" == "-h" ]; then
 fi
 
 #Remove old version of output
-rm *.fq *.fq.gz *.sam *.bam *.bam.bai
+rm $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq.gz \
+$sample-R2Paired.fq.gz $sample.sam $sample.bam $sample.bam.bai
 
 #Concatenate FASTQ files from lanes 1 and 2
 cat $inputForward1 $inputForward2 > $sample-R1.fq.gz
