@@ -11,9 +11,9 @@ samtools view -c -f 4 YS486-2.bam
 ```
 
 ##__YS486-1__:  
-99.24% overall alignment rate  
-Number of mapped reads: 11,946,179  
-Number of unmapped reads: 91,457
+99.23% overall alignment rate  
+Number of mapped reads: 11,919,403  
+Number of unmapped reads: 92,433
 
 ###Examine unmapped reads
 ```
