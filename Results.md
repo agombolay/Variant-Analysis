@@ -1,5 +1,7 @@
 #Alignment Results
 
+###Time: About 1 hour
+
 ###Count # of mapped reads
 ```
 samtools view -c -F 4 sample.bam
