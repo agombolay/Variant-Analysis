@@ -1,6 +1,7 @@
 #Alignment Results
 
-###Time: About 1 hour
+###Time:
+About 1 hour per sample
 
 ###Count # of mapped reads
 ```
