@@ -23,5 +23,5 @@ Number of unmapped reads: 92,433
 
 ##__YS486-2__:  
 99.26% overall alignment rate  
-Number of mapped reads: 11,449,813
+Number of mapped reads: 11,449,813  
 Number of unmapped reads: 84,981
