@@ -48,7 +48,7 @@ cat $inputReverse1 $inputReverse2 > $sample-R2.fq.gz
 #Trim FASTQ files based on quality and Illumina adapter content
 java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
 $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz \
-ILLUMINACLIP:$path/adapters/TruSeq3-SE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
+ILLUMINACLIP:$path/adapters/TruSeq3-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
 
 #Unzip files
 gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
