@@ -66,7 +66,7 @@ samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 #Create index file
 samtools index $sample.bam
 
-#Add read groups
+#Add read groups to alignment file
 java -jar picard.jar AddOrReplaceReadGroups I=$sample.bam \
 O=$sample-v1.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RGSM=$RGSM
       
