@@ -66,3 +66,5 @@ samtools index $sample.bam
 #Add read groups
 
 #Mark duplicates
+
+#GATK
