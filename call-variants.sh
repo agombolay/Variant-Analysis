@@ -67,11 +67,11 @@ samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 samtools index $sample.bam
 
 #Add read groups to alignment file
-java -jar picard.jar AddOrReplaceReadGroups I=$sample.bam \
-O=$sample-temp.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RGSM=$RGSM
+java -jar /projects/home/agombolay3/data/bin/picard.jar AddOrReplaceReadGroups \
+I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RGSM=$RGSM
       
 #Mark duplicates (account for PCR duplicates)
-java -jar picard.jar MarkDuplicates I=$sample-v1.bam \
-O=$sample-final.bam M=$sample.duplication-metrics.txt
+java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
+I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
       
 #GATK
