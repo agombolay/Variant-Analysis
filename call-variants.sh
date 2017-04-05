@@ -73,12 +73,8 @@ I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RG
 #Mark duplicates (account for PCR duplicates)
 java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
 I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
-      
-#Realign, recalibrate based on quality, and call variants
-java -jar GenomeAnalysisTK.jar -T RealignerTargetCreator \
--R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fasta \
--I $sample-MarkDuplicates.bam --known indels.vcf -o $sample.intervals
-   
+
+RealignerTargetCreator
 IndelRealigner
 BaseRecalibrator
 PrintReads
