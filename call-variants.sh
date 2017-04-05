@@ -62,3 +62,7 @@ samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 
 #Create index file
 samtools index $sample.bam
+
+#Add read groups
+
+#Mark duplicates
