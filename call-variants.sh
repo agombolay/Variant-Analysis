@@ -64,7 +64,9 @@ samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 samtools index $sample.bam
 
 #Add read groups
-
+java -jar picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-v1.bam RGLB=$RGLB RGPL=$RGPL RGPU=$RGPU RGSM=$RGSM
+      
 #Mark duplicates
-
+java -jar picard.jar MarkDuplicates I=$sample-v1.bam O=$sample-final.bam M=$sample.duplication-metrics.txt
+      
 #GATK
