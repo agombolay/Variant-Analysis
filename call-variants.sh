@@ -74,8 +74,6 @@ I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RG
 java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
 I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
 
-RealignerTargetCreator
-IndelRealigner
 BaseRecalibrator
 PrintReads
 HaplotypeCaller
