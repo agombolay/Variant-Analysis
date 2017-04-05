@@ -17,7 +17,7 @@ function usage () {
 }
 
 #Command-line options
-while getopts "a:b:c:d:s:p:h" opt;
+while getopts "a:b:c:d:s:p:l:u:n:h" opt;
 do
     case $opt in
 	a ) inputForward1=$OPTARG ;;
@@ -26,6 +26,9 @@ do
 	d ) inputReverse2=$OPTARG ;;
 	s ) sample=$OPTARG ;;
         p ) path=$OPTARG ;;
+	l ) RGLB=$OPTARG ;;
+	u ) RGPU=$OPTARG ;;
+	n ) RGSM=$OPTARG ;;
         #Print usage statement
         h ) usage ;;
     esac
@@ -65,7 +68,7 @@ samtools index $sample.bam
 
 #Add read groups
 java -jar picard.jar AddOrReplaceReadGroups I=$sample.bam \
-O=$sample-v1.bam RGLB=$RGLB RGPL=$RGPL RGPU=$RGPU RGSM=$RGSM
+O=$sample-v1.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RGSM=$RGSM
       
 #Mark duplicates
 #java -jar picard.jar MarkDuplicates I=$sample-v1.bam \
