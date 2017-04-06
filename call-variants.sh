@@ -74,6 +74,7 @@ I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RG
 java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
 I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
 
-BaseRecalibrator
-PrintReads
-HaplotypeCaller
+#Call variants
+java -jar /projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar -R reference.fasta \
+-T HaplotypeCaller -I YS486-1.bam -I CM3.bam -I CM6.bam -I CM9.bam -I CM10.bam \
+-I CM11.bam -I CM12.bam -I CM41.bam -o variants1.Raw-SNPS-Indels.vcf
