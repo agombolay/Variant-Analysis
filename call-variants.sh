@@ -17,7 +17,7 @@ function usage () {
 }
 
 #Command-line options
-while getopts "a:b:c:d:s:p:l:u:n:h" opt;
+while getopts "a:b:c:d:s:p:h" opt;
 do
     case $opt in
 	a ) inputForward1=$OPTARG ;;
@@ -26,9 +26,6 @@ do
 	d ) inputReverse2=$OPTARG ;;
 	s ) sample=$OPTARG ;;
         p ) path=$OPTARG ;;
-	l ) RGLB=$OPTARG ;;
-	u ) RGPU=$OPTARG ;;
-	n ) RGSM=$OPTARG ;;
         #Print usage statement
         h ) usage ;;
     esac
@@ -68,7 +65,7 @@ samtools index $sample.bam
 
 #Add read groups to alignment file
 java -jar /projects/home/agombolay3/data/bin/picard.jar AddOrReplaceReadGroups \
-I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$RGLB RGPL=illumina RGPU=$RGPU RGSM=$RGSM
+I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$sample RGPL=illumina RGPU=123 RGSM=$sample
       
 #Mark duplicates (account for PCR duplicates)
 java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
