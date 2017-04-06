@@ -78,8 +78,8 @@ samtools index $sample.bam
 
 #Move reads to subfolder
 mkdir Reads
-mv $sample-R1.fq.gz Reads
-mv $sample-R1.fq.gz Reads
+mv $sample-R1.fq Reads
+mv $sample-R2.fq Reads
 mv $sample-R1Paired.fq.gz Reads
 mv $sample-R2Paired.fq.gz Reads
 mv $sample-R1Unpaired.fq.gz Reads
