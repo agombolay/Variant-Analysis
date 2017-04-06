@@ -54,6 +54,7 @@ $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R
 ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
 
 #Move unpaired reads to subfolder
+mkdir Unpaired-Reads
 mv $sample-R1Unpaired.fq.gz Unpaired-Reads
 mv $sample-R2Unpaired.fq.gz Unpaired-Reads
 
