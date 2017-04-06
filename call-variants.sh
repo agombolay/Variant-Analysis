@@ -75,6 +75,6 @@ java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
 I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
 
 #Call variants
-java -jar /projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar -T HaplotypeCaller -I YS486-1.bam \
--I CM3.bam -I CM6.bam -I CM9.bam -I CM10.bam -I CM11.bam -I CM12.bam -I CM41.bam -o Raw-SNPS-Indels1.vcf \
--R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa
+#java -jar /projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar -T HaplotypeCaller -I YS486-1.bam \
+#-I CM3.bam -I CM6.bam -I CM9.bam -I CM10.bam -I CM11.bam -I CM12.bam -I CM41.bam -o Raw-SNPS-Indels1.vcf \
+#-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa
