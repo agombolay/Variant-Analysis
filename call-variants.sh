@@ -53,11 +53,6 @@ java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.
 $sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz \
 ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
 
-#Move unpaired reads to subfolder
-mkdir Unpaired-Reads
-mv $sample-R1Unpaired.fq.gz Unpaired-Reads
-mv $sample-R2Unpaired.fq.gz Unpaired-Reads
-
 #Unzip files
 gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
 
@@ -83,3 +78,12 @@ I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-m
 #java -jar /projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar -T HaplotypeCaller -I YS486-1.bam \
 #-I CM3.bam -I CM6.bam -I CM9.bam -I CM10.bam -I CM11.bam -I CM12.bam -I CM41.bam -o Raw-SNPS-Indels1.vcf \
 #-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa
+
+#Move reads to subfolder
+mkdir Reads
+mv $sample-R1.fq.gz Reads
+mv $sample-R1.fq.gz Reads
+mv $sample-R1Paired.fq.gz Reads
+mv $sample-R2Paired.fq.gz Reads
+mv $sample-R1Unpaired.fq.gz Reads
+mv $sample-R2Unpaired.fq.gz Reads
