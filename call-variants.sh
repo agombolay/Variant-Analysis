@@ -64,12 +64,12 @@ samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 samtools index $sample.bam
 
 #Add read groups to alignment file
-java -jar /projects/home/agombolay3/data/bin/picard.jar AddOrReplaceReadGroups \
-I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$sample RGPL=illumina RGPU=123 RGSM=$sample
+#java -jar /projects/home/agombolay3/data/bin/picard.jar AddOrReplaceReadGroups \
+#I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$sample RGPL=illumina RGPU=123 RGSM=$sample
       
 #Mark duplicates (account for PCR duplicates)
-java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
-I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
+#java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
+#I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
 
 #Call variants
 #java -jar /projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar -T HaplotypeCaller -I YS486-1.bam \
