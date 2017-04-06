@@ -26,6 +26,8 @@ samtools bam2fq sample-unmapped.bam > sample-unmapped.fastq
 Number of mapped reads: 11,919,403  
 Number of unmapped reads: 92,433
 
+About 0.6% of positions have 0 coverage
+
 ### YS486-2:  
 99.26% overall alignment rate  
 Number of mapped reads: 11,449,813  
