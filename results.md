@@ -30,6 +30,7 @@ About 0.6% of positions have 0 coverage
 ```
 bedtools genomecov -d -ibam YS486-1.bam -g sacCer2.bed > YS486-1-Coverage.bed
 grep -w 0$ YS486-1-Coverage.bed | wc -l
+wc -l  YS486-2-Coverage.bed
 ```
 
 ### YS486-2:  
@@ -37,9 +38,11 @@ grep -w 0$ YS486-1-Coverage.bed | wc -l
 Number of mapped reads: 11,449,813  
 Number of unmapped reads: 84,981
 
+About 0.6% of positions have 0 coverage
 ```
 bedtools genomecov -d -ibam YS486-2.bam -g sacCer2.bed > YS486-2-Coverage.bed
 grep -w 0$ YS486-2-Coverage.bed | wc -l
+wc -l  YS486-2-Coverage.bed
 ```
 
 ## __Cases__:
