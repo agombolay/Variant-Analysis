@@ -82,10 +82,12 @@ samtools index $sample.bam
 #-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa -o Variants1.vcf    
 
 #Annotate VCF file
-#java -Xmx4g -jar snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
+#java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar \
+#sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
 
 #Filter variants in VCF file by quality score
-#cat Variants1-Annotated.vcf | java -jar SnpSift.jar filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
+#cat Variants1-Annotated.vcf | java -jar /projects/home/agombolay3/data/bin/snpEff/SnpSift.jar \
+#filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
 
 #Move reads to subfolder
 mkdir Reads
