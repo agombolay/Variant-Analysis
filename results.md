@@ -53,6 +53,7 @@ wc -l  YS486-2-Coverage.bed
 99.09% overall alignment rate
 
 ### CM 9:
+99.13% overall alignment rate
 
 ### CM 10:
 
