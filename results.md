@@ -63,5 +63,7 @@ de novo based: 99.59% overall alignment rate
 99.26% overall alignment rate
 
 ### CM 12:
+99.51% overall alignment rate
 
 ### CM 41:
+99.27% overall alignment rate
