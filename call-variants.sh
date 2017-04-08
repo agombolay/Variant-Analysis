@@ -37,7 +37,7 @@ if [ "$1" == "-h" ]; then
 fi
 
 #Remove old version of output
-rm $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq \
+rm -f $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq \
 $sample-R2Paired.fq $sample.sam $sample.bam $sample.bam.bai
 
 #Concatenate FASTQ files from lanes 1 and 2
@@ -55,7 +55,8 @@ gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
 
 #STEP 2
 #Align trimmed forward and reverse reads to reference genome of interest
-bowtie2 -x sacCer2 -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq -S $sample.sam
+#bowtie2 -x sacCer2 -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq -S $sample.sam
+bowtie2 -x scaffolds -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq -S $sample.sam
 
 #Convert SAM file to BAM file format and sort BAM file
 samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
