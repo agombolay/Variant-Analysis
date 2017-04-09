@@ -6,11 +6,11 @@
 #Usage statement
 function usage () {
         echo "Usage: call-variants.sh [-s] 'sample' [-abcd] 'FASTQ.GZ' [-p] '/path/to/Trimmomatic/' [-h]
-	      -a Path to input R1 FASTQ.GZ files, lane 1 ('/path/to/R1.fastq.gz')
-	      -b Path to input R1 FASTQ.GZ files, lane 2 ('/path/to/R1.fastq.gz')
-	      -c Path to input R2 FASTQ.GZ files, lane 1 ('/path/to/R2.fastq.gz')
-	      -d Path to input R2 FASTQ.GZ files, lane 2 ('/path/to/R2.fastq.gz')
-	      -s Sample name of sequenced library; used to name output files
+	      -a Path to input R1 FASTQ.GZ files, lane 1
+	      -b Path to input R1 FASTQ.GZ files, lane 2
+	      -c Path to input R2 FASTQ.GZ files, lane 1
+	      -d Path to input R2 FASTQ.GZ files, lane 2
+	      -s Sample name of library; used to name output files
 	      -p '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
 
