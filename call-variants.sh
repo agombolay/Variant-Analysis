@@ -38,7 +38,7 @@ fi
 bin=/projects/home/agombolay3/data/bin
 
 #Path to reference file
-reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
+reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa
 
 #Remove old version of output
 #rm -f $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq \
@@ -76,7 +76,7 @@ reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Vari
 samtools faidx sacCer2.fa
 
 #Create FASTA dictionary file
-java -jar $bin/picard.jar CreateSequenceDictionary R=$reference/sacCer2.fa O=sacCer2.dict
+java -jar $bin/picard.jar CreateSequenceDictionary R=$reference O=sacCer2.dict
 
 #STEP 3
 #Add read groups to alignment file
@@ -85,11 +85,11 @@ RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform,
 
 #STEP 4
 #Mark duplicates (account for PCR duplicates)
-java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.metrics.txt
+java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
 #STEP 5
 #Call variants
-java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference/sacCer2.fa
+java -jar $bin/GenomeAnalysisTK.jar -I $sample-MarkDups.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
 
 #STEP 6
 #Joint genotyping
