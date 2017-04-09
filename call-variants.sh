@@ -64,18 +64,21 @@ fi
 #Create index file
 #samtools index $sample.bam
 
+#Path to bin folder
 bin=/projects/home/agombolay3/data/bin
+
+#Path to reference file
 reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
 
 #Add read groups to alignment file
 java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
-RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample
+RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform, SM = sample
       
 #Mark duplicates (account for PCR duplicates)
 java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.metrics.txt
 
 #Call variants
-java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam --emitRefConfidence GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference/sacCer2.fa
+java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference/sacCer2.fa
 
 #Joint genotyping
 #java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf --variant YS486-2.g.vcf --variant CM3.g.vcf \
