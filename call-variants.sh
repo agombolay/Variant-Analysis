@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
 
 #Author: Alli Gombolay
-#Date: March 7, 2017
-#This script uses Trimmomatic program to remove Illumina adapter sequences and trim reads based on quality
-#The goal of this pre-processing step is to increase mapping percentage and also decrease incorrect mappings
+#This script identifies variants among cases and controls
 
 #Usage statement
 function usage () {
         echo "Usage: call-variants.sh [-s] 'sample' [-abcd] 'FASTQ.GZ' [-p] '/path/to/Trimmomatic/' [-h]
-	      -a Path to input R1 FASTQ.GZ files, lane 1 ('/path/to/R1.fastq.gz')
-	      -b Path to input R1 FASTQ.GZ files, lane 2 ('/path/to/R1.fastq.gz')
-	      -c Path to input R2 FASTQ.GZ files, lane 1 ('/path/to/R2.fastq.gz')
-	      -d Path to input R2 FASTQ.GZ files, lane 2 ('/path/to/R2.fastq.gz')
-	      -s Sample name of sequenced library; used to name output files
+	      -a Path to input R1 FASTQ.GZ files, lane 1
+	      -b Path to input R1 FASTQ.GZ files, lane 2
+	      -c Path to input R2 FASTQ.GZ files, lane 1
+	      -d Path to input R2 FASTQ.GZ files, lane 2
+	      -s Sample name of library; used to name output files
 	      -p '/projects/home/agombolay3/data/bin/Trimmomatic-0.36'"
 }
 
@@ -64,40 +62,45 @@ fi
 #Create index file
 #samtools index $sample.bam
 
+#Move reads to subfolder
+#mkdir Reads; mv $sample-R1.fq.gz Reads; mv $sample-R2.fq.gz Reads; mv $sample-R1Paired.fq Reads
+#mv $sample-R2Paired.fq Reads; mv $sample-R1Unpaired.fq.gz Reads; mv $sample-R2Unpaired.fq.gz Reads
+
 #Path to bin folder
 bin=/projects/home/agombolay3/data/bin
 
 #Path to reference file
 reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
 
+#Create FASTA index file
+samtools faidx sacCer2.fasta
+
+#Create FASTA dictionary file
+java -jar CreateSequenceDictionary.jar R=$reference/sacCer2.fa O=sacCer2.dict
+
+#STEP 3
 #Add read groups to alignment file
 java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
 RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform, SM = sample
-      
+
+#STEP 4
 #Mark duplicates (account for PCR duplicates)
 java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.metrics.txt
 
+#STEP 5
 #Call variants
 java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference/sacCer2.fa
 
+#STEP 6
 #Joint genotyping
 #java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf --variant YS486-2.g.vcf --variant CM3.g.vcf \
 #--variant CM6.g.vcf --variant CM9.g.vcf --variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf \
 #-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa -o Variants1.vcf    
 
-#Annotate VCF file
-#java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar \
-#sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
+#STEP 7
+#Annotate VCF file based on sacCer2 reference
+#java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
 
+#STEP 8
 #Filter variants in VCF file by quality score
-#cat Variants1-Annotated.vcf | java -jar /projects/home/agombolay3/data/bin/snpEff/SnpSift.jar \
-#filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
-
-#Move reads to subfolder
-#mkdir Reads
-#mv $sample-R1.fq.gz Reads
-#mv $sample-R2.fq.gz Reads
-#mv $sample-R1Paired.fq Reads
-#mv $sample-R2Paired.fq Reads
-#mv $sample-R1Unpaired.fq.gz Reads
-#mv $sample-R2Unpaired.fq.gz Reads
+#cat Variants1-Annotated.vcf | java -jar $bin/snpEff/SnpSift.jar filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
