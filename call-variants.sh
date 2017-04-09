@@ -37,45 +37,48 @@ if [ "$1" == "-h" ]; then
 fi
 
 #Remove old version of output
-rm -f $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq \
-$sample-R2Paired.fq $sample.sam $sample.bam $sample.bam.bai
+#rm -f $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq \
+#$sample-R2Paired.fq $sample.sam $sample.bam $sample.bam.bai
 
 #Concatenate FASTQ files from lanes 1 and 2
-cat $inputForward1 $inputForward2 > $sample-R1.fq.gz
-cat $inputReverse1 $inputReverse2 > $sample-R2.fq.gz
+#cat $inputForward1 $inputForward2 > $sample-R1.fq.gz
+#cat $inputReverse1 $inputReverse2 > $sample-R2.fq.gz
 
 #STEP 1
 #Trim FASTQ files based on quality and Illumina adapter content
-java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
-$sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz \
-ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
+#java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
+#$sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz \
+#ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:5:15 MINLEN:75
 
 #Unzip files
-gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
+#gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
 
 #STEP 2
 #Align trimmed forward and reverse reads to reference genome of interest
 #bowtie2 -x sacCer2 -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq -S $sample.sam
-bowtie2 -x scaffolds -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq -S $sample.sam
+#bowtie2 -x scaffolds -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq -S $sample.sam
 
 #Convert SAM file to BAM file format and sort BAM file
-samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
+#samtools view -b -S $sample.sam | samtools sort -o $sample.bam -
 
 #Create index file
-samtools index $sample.bam
+#samtools index $sample.bam
+
+#Path to bin folder
+bin=/projects/home/agombolay3/data/bin
+
+#Path to reference file
+reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
 
 #Add read groups to alignment file
-#java -jar /projects/home/agombolay3/data/bin/picard.jar AddOrReplaceReadGroups \
-#I=$sample.bam O=$sample-AddReadGroups.bam RGLB=$sample RGPL=illumina RGPU=123 RGSM=$sample
+java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
+RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform, SM = sample
       
 #Mark duplicates (account for PCR duplicates)
-#java -jar /projects/home/agombolay3/data/bin/picard.jar MarkDuplicates \
-#I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.duplication-metrics.txt
+java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.metrics.txt
 
 #Call variants
-#java -jar /projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar \
-#-T HaplotypeCaller -I $sample.bam --emitRefConfidence GVCF -o $sample.Raw-SNPs-Indels.g.vcf \
-#-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa
+java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference/sacCer2.fa
 
 #Joint genotyping
 #java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf --variant YS486-2.g.vcf --variant CM3.g.vcf \
@@ -91,10 +94,10 @@ samtools index $sample.bam
 #filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
 
 #Move reads to subfolder
-mkdir Reads
-mv $sample-R1.fq.gz Reads
-mv $sample-R2.fq.gz Reads
-mv $sample-R1Paired.fq Reads
-mv $sample-R2Paired.fq Reads
-mv $sample-R1Unpaired.fq.gz Reads
-mv $sample-R2Unpaired.fq.gz Reads
+#mkdir Reads
+#mv $sample-R1.fq.gz Reads
+#mv $sample-R2.fq.gz Reads
+#mv $sample-R1Paired.fq Reads
+#mv $sample-R2Paired.fq Reads
+#mv $sample-R1Unpaired.fq.gz Reads
+#mv $sample-R2Unpaired.fq.gz Reads
