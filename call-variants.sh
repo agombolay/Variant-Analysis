@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 #Author: Alli Gombolay
-#Date: March 7, 2017
-#This script uses Trimmomatic program to remove Illumina adapter sequences and trim reads based on quality
-#The goal of this pre-processing step is to increase mapping percentage and also decrease incorrect mappings
+#This script identifies variants among cases and controls
 
 #Usage statement
 function usage () {
