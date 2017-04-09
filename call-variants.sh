@@ -64,6 +64,10 @@ fi
 #Create index file
 #samtools index $sample.bam
 
+#Move reads to subfolder
+#mkdir Reads; mv $sample-R1.fq.gz Reads; mv $sample-R2.fq.gz Reads; mv $sample-R1Paired.fq Reads
+#mv $sample-R2Paired.fq Reads; mv $sample-R1Unpaired.fq.gz Reads; mv $sample-R2Unpaired.fq.gz Reads
+
 #Path to bin folder
 bin=/projects/home/agombolay3/data/bin
 
@@ -85,19 +89,8 @@ java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam -ERC GVCF -o $sample.g.vcf -T
 #--variant CM6.g.vcf --variant CM9.g.vcf --variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf \
 #-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa -o Variants1.vcf    
 
-#Annotate VCF file
-#java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar \
-#sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
+#Annotate VCF file based on sacCer2 reference
+#java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
 
 #Filter variants in VCF file by quality score
-#cat Variants1-Annotated.vcf | java -jar /projects/home/agombolay3/data/bin/snpEff/SnpSift.jar \
-#filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
-
-#Move reads to subfolder
-#mkdir Reads
-#mv $sample-R1.fq.gz Reads
-#mv $sample-R2.fq.gz Reads
-#mv $sample-R1Paired.fq Reads
-#mv $sample-R2Paired.fq Reads
-#mv $sample-R1Unpaired.fq.gz Reads
-#mv $sample-R2Unpaired.fq.gz Reads
+#cat Variants1-Annotated.vcf | java -jar $bin/snpEff/SnpSift.jar filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
