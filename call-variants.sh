@@ -34,6 +34,12 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
+#Path to bin folder
+bin=/projects/home/agombolay3/data/bin
+
+#Path to reference file
+reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
+
 #Remove old version of output
 #rm -f $sample-R1.fq.gz $sample-R2.fq.gz $sample-R1Paired.fq \
 #$sample-R2Paired.fq $sample.sam $sample.bam $sample.bam.bai
@@ -65,12 +71,6 @@ fi
 #Move reads to subfolder
 #mkdir Reads; mv $sample-R1.fq.gz Reads; mv $sample-R2.fq.gz Reads; mv $sample-R1Paired.fq Reads
 #mv $sample-R2Paired.fq Reads; mv $sample-R1Unpaired.fq.gz Reads; mv $sample-R2Unpaired.fq.gz Reads
-
-#Path to bin folder
-bin=/projects/home/agombolay3/data/bin
-
-#Path to reference file
-reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
 
 #Create FASTA index file
 samtools faidx sacCer2.fa
