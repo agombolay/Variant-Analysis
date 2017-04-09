@@ -76,7 +76,7 @@ reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Vari
 samtools faidx sacCer2.fa
 
 #Create FASTA dictionary file
-java -jar $bin/CreateSequenceDictionary.jar R=$reference/sacCer2.fa O=sacCer2.dict
+java -jar $bin/picard.jar CreateSequenceDictionary R=$reference/sacCer2.fa O=sacCer2.dict
 
 #STEP 3
 #Add read groups to alignment file
