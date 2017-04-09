@@ -87,6 +87,9 @@ RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform,
 #Mark duplicates (account for PCR duplicates)
 java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
+#Create index file
+samtools index $sample-MarkDups.bam
+
 #STEP 5
 #Call variants
 java -jar $bin/GenomeAnalysisTK.jar -I $sample-MarkDups.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
