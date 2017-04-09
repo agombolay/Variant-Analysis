@@ -74,23 +74,29 @@ bin=/projects/home/agombolay3/data/bin
 #Path to reference file
 reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
 
+#STEP 3
 #Add read groups to alignment file
 java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
 RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform, SM = sample
-      
+
+#STEP 4
 #Mark duplicates (account for PCR duplicates)
 java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDuplicates.bam M=$sample.metrics.txt
 
+#STEP 5
 #Call variants
 java -jar $bin/GenomeAnalysisTK.jar -I $sample.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference/sacCer2.fa
 
+#STEP 6
 #Joint genotyping
 #java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf --variant YS486-2.g.vcf --variant CM3.g.vcf \
 #--variant CM6.g.vcf --variant CM9.g.vcf --variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf \
 #-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa -o Variants1.vcf    
 
+#STEP 7
 #Annotate VCF file based on sacCer2 reference
 #java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
 
+#STEP 8
 #Filter variants in VCF file by quality score
 #cat Variants1-Annotated.vcf | java -jar $bin/snpEff/SnpSift.jar filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
