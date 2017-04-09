@@ -72,6 +72,12 @@ bin=/projects/home/agombolay3/data/bin
 #Path to reference file
 reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling
 
+#Create FASTA index file
+samtools faidx sacCer2.fasta
+
+#Create FASTA dictionary file
+java -jar CreateSequenceDictionary.jar R=$reference/sacCer2.fa O=sacCer2.dict
+
 #STEP 3
 #Add read groups to alignment file
 java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
