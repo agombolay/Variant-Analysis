@@ -47,7 +47,7 @@ wc -l  YS486-2-Coverage.bed
 
 ## __Cases__:
 ### CM 3:
-reference based: 99.27% overall alignment rate
+reference based: 99.27% overall alignment rate  
 de novo based: 99.59% overall alignment rate
 
 ### CM 6:
