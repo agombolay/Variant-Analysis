@@ -63,4 +63,4 @@ java -jar $bin/GenomeAnalysisTK.jar -I $sample-MarkDups.bam -ERC GVCF -o $sample
 #java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
 
 #Filter variants in VCF file by quality score
-#cat Variants1-Annotated.vcf | java -jar $bin/snpEff/SnpSift.jar filter " ( QUAL >= 30 )" > Variants1-Filtered.vcf
+#cat Variants1-Annotated.vcf | java -jar $bin/snpEff/SnpSift.jar filter "( QUAL >= 30 )" > Variants1-Filtered.vcf
