@@ -12,6 +12,8 @@ reference=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Vari
 #Create FASTA index file
 samtools faidx sacCer2.fa
 
+rm -f sacCer2.dict
+
 #Create FASTA dictionary file
 java -jar $bin/picard.jar CreateSequenceDictionary R=$reference O=sacCer2.dict
 
