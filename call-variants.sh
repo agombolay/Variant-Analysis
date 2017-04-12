@@ -13,9 +13,9 @@ function usage () {
 while getopts "s:h" opt;
 do
   case $opt in
-	  s ) sample=$OPTARG ;;
-    #Print usage statement
-    h ) usage ;;
+  	s ) sample=$OPTARG ;;
+  	#Print usage statement
+  	h ) usage ;;
   esac
 done
 
