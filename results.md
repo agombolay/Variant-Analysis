@@ -26,6 +26,7 @@ samtools bam2fq sample-unmapped.bam > sample-unmapped.fastq
 Number of mapped reads: 11,919,403  
 Number of unmapped reads: 92,433
 
+Average coverage across genome:
 About 0.6% of positions have 0 coverage
 ```
 bedtools genomecov -d -ibam YS486-1.bam -g sacCer2.bed > YS486-1-Coverage.bed
@@ -38,6 +39,7 @@ wc -l  YS486-2-Coverage.bed
 Number of mapped reads: 11,449,813  
 Number of unmapped reads: 84,981
 
+Average coverage across genome:
 About 0.6% of positions have 0 coverage
 ```
 bedtools genomecov -d -ibam YS486-2.bam -g sacCer2.bed > YS486-2-Coverage.bed
@@ -47,7 +49,7 @@ wc -l  YS486-2-Coverage.bed
 
 ## __Cases__:
 ### CM 3:
-reference based: 99.27% overall alignment rate
+reference based: 99.27% overall alignment rate  
 de novo based: 99.59% overall alignment rate
 
 ### CM 6:
