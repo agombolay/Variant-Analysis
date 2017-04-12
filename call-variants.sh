@@ -20,18 +20,20 @@ samples=("YS486-1" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
 #Determine coordinates
 for sample in ${samples[@]}; do
 
-#Add read groups to alignment file
-java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
-RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform, SM = sample
+  #Add read groups to alignment file
+  java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
+  RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample #LB = library, PL = platform, SM = sample
 
-#Mark duplicates (account for PCR duplicates)
-#java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
+  #Mark duplicates (account for PCR duplicates)
+  java -jar $bin/picard.jar MarkDuplicates I=$sample-AddReadGroups.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
-#Create index file
-#samtools index $sample-MarkDups.bam
+  #Create index file
+  samtools index $sample-MarkDups.bam
 
-#Call variants
-#java -jar $bin/GenomeAnalysisTK.jar -I $sample-MarkDups.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
+  #Call variants
+  java -jar $bin/GenomeAnalysisTK.jar -I $sample-MarkDups.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
+
+done
 
 #Joint genotyping
 #java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf \
