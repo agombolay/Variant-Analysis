@@ -4,7 +4,10 @@ samtools faidx sacCer2.fa
 #Create FASTA dictionary file
 java -jar $bin/picard.jar CreateSequenceDictionary R=$reference O=sacCer2.dict
 
-for sample in sample
+samples=("YS486-1" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
+
+#Determine coordinates
+for sample in ${samples[@]}; do
 
 #Add read groups to alignment file
 java -jar $bin/picard.jar AddOrReplaceReadGroups I=$sample.bam O=$sample-AddReadGroups.bam \
