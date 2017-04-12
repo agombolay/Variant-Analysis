@@ -55,9 +55,9 @@ samtools index $sample-MarkDups.bam
 java -jar $bin/GenomeAnalysisTK.jar -I $sample-MarkDups.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
 
 #Joint genotyping
-#java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf --variant YS486-2.g.vcf --variant CM3.g.vcf \
-#--variant CM6.g.vcf --variant CM9.g.vcf --variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf \
-#-R /projects/home/agombolay3/data/repository/Variant-Calling-Project/Variant-Calling/sacCer2.fa -o Variants1.vcf    
+#java -jar GenomeAnalysisTK.jar -T GenotypeGVCFs --variant YS486-1.g.vcf \
+#--variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf --variant CM10.g.vcf \
+#--variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants1.vcf    
 
 #Annotate VCF file based on sacCer2 reference
 #java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
