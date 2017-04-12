@@ -3,27 +3,6 @@
 #Author: Alli Gombolay
 #This script identifies variants among cases and controls
 
-#Usage statement
-function usage () {
-        echo "Usage: call-variants.sh [-s] 'sample' [-h]
-	      -s Sample name of library; used to name output files"
-}
-
-#Command-line options
-while getopts "s:h" opt;
-do
-  case $opt in
-  	s ) sample=$OPTARG ;;
-  	#Print usage statement
-  	h ) usage ;;
-  esac
-done
-
-#Exit program if [-h]
-if [ "$1" == "-h" ]; then
-        exit
-fi
-
 #Path to bin folder
 bin=/projects/home/agombolay3/data/bin
 
