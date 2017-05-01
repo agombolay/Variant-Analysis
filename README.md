@@ -1,3 +1,12 @@
+# Genome Assembly
+1. Spades, Abyss, and Velvet
+
+2. CISA
+
+3. [Quast] (http://quast.sourceforge.net/download.html)
+
+4. GeneMark
+
 # Variant-Analysis
 
 1. Trim reads: Trimmomatic
