@@ -4,7 +4,6 @@
 3. [Quast](http://quast.sourceforge.net/download.html)
 4. GeneMark
 
-
 Helpful tools:
 * Scaffolder: [Bambus](http://amos.sourceforge.net/wiki/index.php/Bambus)  
 * Genome annotation pipeline: [Maker](http://www.yandell-lab.org/software/maker.html)  
