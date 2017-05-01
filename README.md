@@ -8,9 +8,9 @@
 4. GeneMark
 
 * Scaffolder: [Bambus](http://amos.sourceforge.net/wiki/index.php/Bambus)  
-* NGS analysis tools: [Geneious](http://www.geneious.com/)  
-* Align large genomes: [LASTZ (Geneious plugin)](http://www.geneious.com/plugins/lastz-plugin)  
 * Genome annotation pipeline: [Maker](http://www.yandell-lab.org/software/maker.html)  
+* NGS data analysis tools: [Geneious](http://www.geneious.com/)  
+* Align large genomes: [LASTZ (Geneious plugin)](http://www.geneious.com/plugins/lastz-plugin)  
 * Visualize de novo assembly graphs: [Bandage](https://rrwick.github.io/Bandage/)  
 
 # Variant-Analysis
