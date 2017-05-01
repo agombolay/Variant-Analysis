@@ -9,6 +9,11 @@
 
 5. [Geneious](http://www.geneious.com/)
 
+https://rrwick.github.io/Bandage/
+http://www.geneious.com/plugins/lastz-plugin
+http://www.yandell-lab.org/software/maker.html
+http://amos.sourceforge.net/wiki/index.php/Bambus
+
 # Variant-Analysis
 
 1. Trim reads: Trimmomatic
