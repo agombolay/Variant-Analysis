@@ -7,6 +7,8 @@
 
 4. GeneMark
 
+5. [Geneious](http://www.geneious.com/)
+
 # Variant-Analysis
 
 1. Trim reads: Trimmomatic
