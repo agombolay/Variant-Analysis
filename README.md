@@ -11,7 +11,7 @@
 * Align large genomes: [LASTZ](http://www.geneious.com/plugins/lastz-plugin)  
 * NGS analysis tools: [Geneious](http://www.geneious.com/)  
 * Genome annotation pipeline: [Maker](http://www.yandell-lab.org/software/maker.html)  
-* Visualizing de novo assembly graphs: [Bandage](https://rrwick.github.io/Bandage/)  
+* Visualize de novo assembly graphs: [Bandage](https://rrwick.github.io/Bandage/)  
 
 # Variant-Analysis
 
