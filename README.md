@@ -7,6 +7,7 @@
 
 4. GeneMark
 
+Helpful tools:
 * Scaffolder: [Bambus](http://amos.sourceforge.net/wiki/index.php/Bambus)  
 * Genome annotation pipeline: [Maker](http://www.yandell-lab.org/software/maker.html)  
 * Visualize de novo assembly graphs: [Bandage](https://rrwick.github.io/Bandage/)  
