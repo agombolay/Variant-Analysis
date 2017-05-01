@@ -3,7 +3,7 @@
 
 2. CISA
 
-3. [Quast] (http://quast.sourceforge.net/download.html)
+3. [Quast](http://quast.sourceforge.net/download.html)
 
 4. GeneMark
 
