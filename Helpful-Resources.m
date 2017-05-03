@@ -1,6 +1,6 @@
-https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php
-
-https://software.broadinstitute.org/gatk/documentation/article.php?id=1247
+#Helpful Resources
+* [GenotypeGVCFs](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php)
+* [Known variants/sites](https://software.broadinstitute.org/gatk/documentation/article.php?id=1247)
 
 https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_haplotypecaller_HaplotypeCaller.php
 
