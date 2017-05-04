@@ -27,15 +27,23 @@ Helpful tools:
 
 7. Filter VCF file: SnpSift
 
-Install Abyss:
-#Create my own abyss folder in which to save executables
+## Install Abyss:
+Create my own abyss folder in which to save executables
+```
 mkdir abyss
+```
 
-#Configure program and save the executables to abyss folder
+Configure program and save the executables to abyss folder
+```
 ./configure --prefix=/projects/home/agombolay3/data/bin/abyss
+```
 
-#Build the software
+Build the software
+```
 make
+```
 
-#Install the software
+Install the software
+```
 make install
+```
