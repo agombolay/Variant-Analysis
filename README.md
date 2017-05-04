@@ -47,3 +47,17 @@ make
 ```
 make install
 ```
+
+## Install Velvet
+1. Download the program
+```
+wget https://www.ebi.ac.uk/~zerbino/velvet/velvet_1.2.10.tgz
+```
+2. Unpack the program
+```
+tar zxvf velvet/velvet_1.2.10.tgz
+```
+3. Build the software
+```
+make
+```
