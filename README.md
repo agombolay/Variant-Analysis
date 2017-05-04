@@ -75,3 +75,17 @@ tar -zxvf velvet/velvet_1.2.10.tgz
 ```
 make
 ```
+
+## Install CISA
+1. Download the software
+```
+wget http://sb.nhri.org.tw/CISA/upload/en/2014/3/CISA_20140304-05194132.tar
+```
+2. Unpack the software
+```
+tar -xvf CISA_20140304-05194132.tar
+```
+3. Change permissions
+```
+chmod 755 -R CISA1.3
+```
