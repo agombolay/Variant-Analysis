@@ -49,11 +49,11 @@ make install
 ```
 
 ## Install Velvet
-1. Download the program
+1. Download the software
 ```
 wget https://www.ebi.ac.uk/~zerbino/velvet/velvet_1.2.10.tgz
 ```
-2. Unpack the program
+2. Unpack the software
 ```
 tar zxvf velvet/velvet_1.2.10.tgz
 ```
