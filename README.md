@@ -55,7 +55,7 @@ wget https://www.ebi.ac.uk/~zerbino/velvet/velvet_1.2.10.tgz
 ```
 2. Unpack the software
 ```
-tar zxvf velvet/velvet_1.2.10.tgz
+tar -zxvf velvet/velvet_1.2.10.tgz
 ```
 3. Build the software
 ```
