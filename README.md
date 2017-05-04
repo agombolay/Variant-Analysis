@@ -27,6 +27,20 @@ Helpful tools:
 
 7. Filter VCF file: SnpSift
 
+## Install Spades:
+1. Download the software
+```
+wget http://cab.spbu.ru/files/release3.10.1/SPAdes-3.10.1-Linux.tar.gz
+```
+2. Unpack the software
+```
+tar -xzf SPAdes-3.10.1-Linux.tar.gz
+```
+3. Move to directory
+```
+cd SPAdes-3.10.1-Linux/bin/
+```
+
 ## Install Abyss:
 1. Create my own abyss folder in which to save executables
 ```
