@@ -91,8 +91,10 @@ chmod 755 -R CISA1.3
 ```
 
 ## Run SPADES
+```
 path=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Sequencing-Results
 output=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Assemblies
+```
 
 Merge files of Library 1
 ```
