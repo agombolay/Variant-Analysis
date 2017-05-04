@@ -89,3 +89,11 @@ tar -xvf CISA_20140304-05194132.tar
 ```
 chmod 755 -R CISA1.3
 ```
+
+## Run SPADES
+sequencing=/projects/home/agombolay3/data/repository/Variant-Calling-Project/Sequencing-Results
+
+zcat $sequencing/YS486-1_S49_L001_R1_001.fastq.gz $sequencing/YS486-1_S49_L002_R1_001.fastq.gz > $sequencing/YS486-1_R1.fastq.gz
+zcat $sequencing/YS486-1_S49_L001_R2_001.fastq.gz $sequencing/YS486-1_S49_L002_R2_001.fastq.gz > $sequencing/YS486-1_R2.fastq.gz
+
+spades.py --pe<1>-1 <file> --pe<1>-2 <file_name> --pe<2>-1 <file_name> --pe<2>-2 <file_name> --careful -o output_dir
