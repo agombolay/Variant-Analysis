@@ -56,8 +56,8 @@ cat $input1 $input2 > R1.fq.gz; cat $input3 $input4 > R2.fq.gz
 
 #############################################################################################################################
 #STEP 2: Trim FASTQ files based on quality and Illumina adapter content
-java -jar $path/trimmomatic-0.36.jar PE -phred33 R1.fq.gz R2.fq.gz R1Paired.fq.gz R1Unpaired.fq.gz R2Paired.fq.gz R2Unpaired.fq.gz \
-ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:75
+java -jar $path/trimmomatic-0.36.jar PE -phred33 R1.fq.gz R2.fq.gz R1Paired.fq.gz R1Unpaired.fq.gz 
+R2Paired.fq.gz R2Unpaired.fq.gz ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 #Unzip files
 gunzip R1Paired.fq.gz R2Paired.fq.gz
