@@ -37,18 +37,19 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
+#############################################################################################################################
 #Input files
-input1=$directory/Variant-Calling-Project/Sequencing/$forward1
-input2=$directory/Variant-Calling-Project/Sequencing/$forward2
-input3=$directory/Variant-Calling-Project/Sequencing/$reverse1
-input4=$directory/Variant-Calling-Project/Sequencing/$reverse2
+input1=$directory/Variant-Calling/Sequencing/$forward1
+input2=$directory/Variant-Calling/Sequencing/$forward2
+input3=$directory/Variant-Calling/Sequencing/$reverse1
+input4=$directory/Variant-Calling/Sequencing/$reverse2
 
 #Directory
-mkdir -p $directory/Variant-Calling-Project/Alignment
+mkdir -p $directory/Variant-Calling/Alignment
 
 #Output files
-statistics=$directory/Variant-Calling-Project/Alignment/Bowtie2.log
-mapped=$directory/Variant-Calling-Project/Alignment/$sample-MappedReads.bam
+statistics=$directory/Variant-Calling/Alignment/Bowtie2.log
+mapped=$directory/Variant-Calling/Alignment/$sample-MappedReads.bam
 
 #############################################################################################################################
 #STEP 1: Concatenate FASTQ files from lanes 1 and 2
