@@ -43,25 +43,32 @@ input2=$directory/Variant-Calling-Project/Sequencing/$forward2
 input3=$directory/Variant-Calling-Project/Sequencing/$reverse1
 input4=$directory/Variant-Calling-Project/Sequencing/$reverse2
 
-#Path to reference file
-reference=$directory/Variant-Calling-Project/References/$reference.fa
+#Directory
+mkdir -p $directory/Variant-Calling-Project/Alignment
 
-#Concatenate FASTQ files from lanes 1 and 2
-cat $input1 $input2 > $sample-R1.fq.gz; cat $input3 $input4 > $sample-R2.fq.gz
+#Output files
+statistics=$directory/Variant-Calling-Project/Alignment/Bowtie2.log
+mapped=$directory/Variant-Calling-Project/Alignment/$sample-MappedReads.bam
 
 #############################################################################################################################
-#STEP 1
-#Trim FASTQ files based on quality and Illumina adapter content
-java -jar $path/trimmomatic-0.36.jar PE -phred33 $sample-R1.fq.gz $sample-R2.fq.gz \
-$sample-R1Paired.fq.gz $sample-R1Unpaired.fq.gz $sample-R2Paired.fq.gz $sample-R2Unpaired.fq.gz \
+#STEP 1: Concatenate FASTQ files from lanes 1 and 2
+cat $input1 $input2 > R1.fq.gz; cat $input3 $input4 > R2.fq.gz
+
+#############################################################################################################################
+#STEP 2: Trim FASTQ files based on quality and Illumina adapter content
+java -jar $path/trimmomatic-0.36.jar PE -phred33 R1.fq.gz R2.fq.gz R1Paired.fq.gz R1Unpaired.fq.gz R2Paired.fq.gz R2Unpaired.fq.gz \
 ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 #Unzip files
-gunzip $sample-R1Paired.fq.gz $sample-R2Paired.fq.gz
+gunzip R1Paired.fq.gz R2Paired.fq.gz
 
 #############################################################################################################################
-#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
-bowtie2 -x $index -1 $sample-R1Paired.fq -2 $sample-R2Paired.fq 2> $statistics > $sample.sam
+#STEP 3: Align pairs of reads to reference genome and save Bowtie2 log file
+bowtie2 -x $index -1 R1Paired.fq -2 R2Paired.fq 2> $statistics -S temp.sam
 
-#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
-samtools view -bSf2 $sample.sam | samtools sort - -o $sample.bam; samtools index $sample.bam
+#############################################################################################################################
+#STEP 4: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
+samtools view -bSf2 temp.sam | samtools sort - -o $mapped; samtools index $mapped
+
+#Remove temporary files
+rm -f R1.fq.gz R2.fq.gz R1Paired.fq R1Unpaired.fq.gz R2Paired.fq R2Unpaired.fq.gz temp.sam
