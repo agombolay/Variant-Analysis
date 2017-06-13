@@ -7,10 +7,10 @@
 function usage () {
         echo "Usage: Alignment.sh [-s] 'Sample(s)' [-abcd] 'FASTQ.GZ' [-p] 'Path' [-i] 'Index' [-d] 'Directory' [-h]
 		-s Sample name(s) (e.g., FS1, FS2, FS3)
-		-a Input Read 1, lane 1 FASTQ.GZ filename
-	      	-b Input Read 1, lane 2 FASTQ.GZ filename
-	      	-c Input Read 2, lane 1 FASTQ.GZ filename
-	      	-d Input Read 2, lane 2 FASTQ.GZ filename
+		-w Input Read 1, lane 1 FASTQ.GZ filename
+	      	-x Input Read 1, lane 2 FASTQ.GZ filename
+	      	-y Input Read 2, lane 1 FASTQ.GZ filename
+	      	-z Input Read 2, lane 2 FASTQ.GZ filename
 	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
 	      	-i Basename of Bowtie2 index (e.g., sacCer2, pombe, ecoli, mm9, or hg38)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
