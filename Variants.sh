@@ -6,12 +6,16 @@
 #Usage statement
 function usage () {
         echo "Usage: Variants.sh [options]
+		-s Sample name(YS486, CM1, CM2, etc.)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
 }
 
 #Command-line options
-while getopts "d:h" opt; do
+while getopts "s:d:h" opt; do
     case $opt in
+	#Allow multiple input arguments
+	s ) samples=($OPTARG) ;;
+	#Allow only one input argument
 	d ) directory=$OPTARG ;;
     	#Print usage statement
     	h ) usage ;;
@@ -35,9 +39,6 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 
 #Create FASTA dictionary file
 java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
-
-#samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
-samples=("YS486" "CM3")
 
 #Determine coordinates
 for sample in ${samples[@]}; do
