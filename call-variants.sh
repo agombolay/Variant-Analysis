@@ -5,7 +5,7 @@
 
 #Usage statement
 function usage () {
-        echo "Usage: Align.sh [options]
+        echo "Usage: Variants.sh [options]
 		-s Sample name(s)
 	      	-f Input Read 1 FASTQ.GZ filename
 	      	-r Input Read 2 FASTQ.GZ filename
