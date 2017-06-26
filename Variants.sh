@@ -6,22 +6,12 @@
 #Usage statement
 function usage () {
         echo "Usage: Variants.sh [options]
-		-s Sample name(s)
-	      	-f Input Read 1 FASTQ.GZ filename
-	      	-r Input Read 2 FASTQ.GZ filename
-	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
-	      	-i Basename of Bowtie2 index (e.g., sacCer2, pombe, ecoli, mm9, or hg38)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
 }
 
 #Command-line options
-while getopts "s:f:r:p:i:d:h" opt; do
+while getopts "d:h" opt; do
     case $opt in
-    	s ) sample=$OPTARG ;;
-    	f ) forward=$OPTARG ;;
-	r ) reverse=$OPTARG ;;
-    	p ) path=$OPTARG ;;
-	i ) index=$OPTARG ;;
 	d ) directory=$OPTARG ;;
     	#Print usage statement
     	h ) usage ;;
@@ -37,8 +27,11 @@ fi
 picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
 
+#Input file
+mapped=$directory/Variant-Calling/Alignment/$sample.bam
+
 #Reference
-reference=/projects/home/agombolay3/data/repository/Variant-Calling/References/sgdModified.fa
+reference=$directory/Variant-Calling/References/sgdModified.fa
 
 #Create FASTA dictionary file
 java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
