@@ -36,7 +36,7 @@ for sample in ${samples[@]}; do
 	mkdir -p $directory/Variant-Calling/Alignment
 
 	#Input files
-	read1=$directory/Variant-Calling/Sequencing/$sample.fastq
+	read1=$directory/Variant-Calling/Sequencing/$sample-R1.fastq
 	read2=$directory/Variant-Calling/Sequencing/$sample_R2.fastq
 	echo $read1
 
