@@ -15,7 +15,7 @@ function usage () {
 #Command-line options
 while getopts "s:p:i:d:h" opt; do
     case $opt in
-	s ) sample=$OPTARG ;;
+	s ) samples=$OPTARG ;;
         p ) path=$OPTARG ;;
 	i ) index=$OPTARG ;;
 	d ) directory=$OPTARG ;;
@@ -28,9 +28,6 @@ done
 if [ "$1" == "-h" ]; then
         exit
 fi
-
-#samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
-samples=("YS486" "CM3")
 
 #Determine coordinates
 for sample in ${samples[@]}; do
