@@ -33,7 +33,8 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
-samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
+#samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
+samples=("YS486" "CM3")
 
 #Determine coordinates
 for sample in ${samples[@]}; do
