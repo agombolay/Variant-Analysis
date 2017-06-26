@@ -42,12 +42,13 @@ samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
 for sample in ${samples[@]}; do
 
 	#Add read groups to alignment file
-  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
+  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam \
+	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
   	#Mark duplicates (account for PCR duplicates)
-  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt; samtools index temp2.bam
+  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
 
-	#Call variants
+	#Call variants with GATK's HaplotypeCaller tool
 	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
 
 done
