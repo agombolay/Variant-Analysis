@@ -35,7 +35,6 @@ samples=("YS486" "CM3")
 #Determine coordinates
 for sample in ${samples[@]}; do
 
-#############################################################################################################################
 #Create Directory
 mkdir -p $directory/Variant-Calling/Alignment
 
@@ -47,7 +46,6 @@ read2=$directory/Variant-Calling/Sequencing/$sample_R2.fastq
 mapped=$directory/Variant-Calling/Alignment/$sample.bam
 statistics=$directory/Variant-Calling/Alignment/Bowtie2.log
 
-#############################################################################################################################
 #STEP 1: Trim FASTQ files based on quality and Illumina adapter content
 java -jar $path/trimmomatic-0.36.jar PE -phred33 $read1 $read2 Paired1-Output.fq Unpaired1-Output.fq Paired2-Output.fq \
 Unpaired2-Output.fq ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:15 LEADING:10 TRAILING:10 MINLEN:75
