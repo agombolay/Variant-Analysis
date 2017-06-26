@@ -55,6 +55,6 @@ for sample in ${samples[@]}; do
 	samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index $mapped
 
 	#Remove temporary files
-	rm -f Paired1-Out.fq.gz Unpaired1-Out.fq.gz Paired2-Out.fq.gz Unpaired2-Out.fq.gz temp.sam
+	rm -f Paired1-Output.fq Unpaired1-Output.fq Paired2-Output.fq Unpaired2-Output.fq temp.sam
 
 done
