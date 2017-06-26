@@ -38,6 +38,7 @@ for sample in ${samples[@]}; do
 	#Input files
 	read1=$directory/Variant-Calling/Sequencing/$sample_R1.fastq
 	read2=$directory/Variant-Calling/Sequencing/$sample_R2.fastq
+	echo $read1
 
 	#Output files
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
