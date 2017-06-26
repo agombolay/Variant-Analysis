@@ -61,15 +61,15 @@ java -jar $path/trimmomatic-0.36.jar PE -phred33 R1.fq.gz R2.fq.gz R1Paired.fq.g
 R2Paired.fq.gz R2Unpaired.fq.gz ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 #Unzip files
-gunzip R1Paired.fq.gz R2Paired.fq.gz
+#gunzip R1Paired.fq.gz R2Paired.fq.gz
 
 #############################################################################################################################
 #STEP 3: Align pairs of reads to reference genome and save Bowtie2 log file
-bowtie2 -x $index -1 R1Paired.fq -2 R2Paired.fq 2> $statistics -S temp.sam
+bowtie2 -x $index -1 R1Paired.fq.gz -2 R2Paired.fq.gz 2> $statistics -S temp.sam
 
 #############################################################################################################################
 #STEP 4: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
 samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index $mapped
 
 #Remove temporary files
-rm -f R1.fq.gz R2.fq.gz R1Paired.fq R1Unpaired.fq.gz R2Paired.fq R2Unpaired.fq.gz temp.sam
+rm -f R1.fq.gz R2.fq.gz R1Paired.fq.gz R1Unpaired.fq.gz R2Paired.fq.gz R2Unpaired.fq.gz temp.sam
