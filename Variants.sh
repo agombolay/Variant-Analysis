@@ -36,7 +36,8 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 #Create FASTA dictionary file
 java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
 
-samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
+#samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
+samples=("YS486" "CM3")
 
 #Determine coordinates
 for sample in ${samples[@]}; do
