@@ -6,20 +6,16 @@
 #Usage statement
 function usage () {
         echo "Usage: Align.sh [options]
-		-s Sample name(s)
-	      	-f Input Read 1 FASTQ.GZ filename
-	      	-r Input Read 2 FASTQ.GZ filename
+		-s Sample name(YS486, CM1, CM2, etc.)
 	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
 	      	-i Basename of Bowtie2 index (e.g., sacCer2, pombe, ecoli, mm9, or hg38)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
 }
 
 #Command-line options
-while getopts "s:f:r:p:i:d:h" opt; do
+while getopts "s:p:i:d:h" opt; do
     case $opt in
 	s ) sample=$OPTARG ;;
-        f ) forward=$OPTARG ;;
-	r ) reverse=$OPTARG ;;
         p ) path=$OPTARG ;;
 	i ) index=$OPTARG ;;
 	d ) directory=$OPTARG ;;
@@ -44,8 +40,8 @@ for sample in ${samples[@]}; do
 mkdir -p $directory/Variant-Calling/Alignment
 
 #Input files
-read1=$directory/Variant-Calling/Sequencing/$forward
-read2=$directory/Variant-Calling/Sequencing/$reverse
+read1=$directory/Variant-Calling/Sequencing/$sample_R1.fastq
+read2=$directory/Variant-Calling/Sequencing/$sample_R2.fastq
 
 #Output files
 mapped=$directory/Variant-Calling/Alignment/$sample.bam
