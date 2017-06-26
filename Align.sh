@@ -69,7 +69,7 @@ bowtie2 -x $index -1 R1Paired.fq -2 R2Paired.fq 2> $statistics -S temp.sam
 
 #############################################################################################################################
 #STEP 4: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
-samtools view -bSf2 temp.sam | samtools sort - -o $mapped; samtools index $mapped
+samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index $mapped
 
 #Remove temporary files
 rm -f R1.fq.gz R2.fq.gz R1Paired.fq R1Unpaired.fq.gz R2Paired.fq R2Unpaired.fq.gz temp.sam
