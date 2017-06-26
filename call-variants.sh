@@ -61,10 +61,10 @@ done
   
 #Joint genotyping
 java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
---variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf    
-
-#Annotate VCF file based on sacCer2 reference
-#java -Xmx4g -jar /projects/home/agombolay3/data/bin/snpEff/snpEff.jar sacCer2 Variants1.vcf  > Variants1-Annotated.vcf 
+--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
 #Filter variants in VCF file by quality score
-#cat Variants1-Annotated.vcf | java -jar $bin/snpEff/SnpSift.jar filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+cat Variants.vcf | java -jar $bin/snpEff/SnpSift.jar filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+
+#Remove temporary files
+temp1.bam temp2.bam Variants.vcf
