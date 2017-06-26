@@ -3,6 +3,36 @@
 #Author: Alli Gombolay
 #This script identifies variants among cases and controls
 
+#Usage statement
+function usage () {
+        echo "Usage: Align.sh [options]
+		-s Sample name(s)
+	      	-f Input Read 1 FASTQ.GZ filename
+	      	-r Input Read 2 FASTQ.GZ filename
+	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
+	      	-i Basename of Bowtie2 index (e.g., sacCer2, pombe, ecoli, mm9, or hg38)
+		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
+}
+
+#Command-line options
+while getopts "s:f:r:p:i:d:h" opt; do
+    case $opt in
+	  s ) sample=$OPTARG ;;
+    f ) forward=$OPTARG ;;
+	  r ) reverse=$OPTARG ;;
+    p ) path=$OPTARG ;;
+	  i ) index=$OPTARG ;;
+	  d ) directory=$OPTARG ;;
+    #Print usage statement
+    h ) usage ;;
+    esac
+done
+
+#Exit program if [-h]
+if [ "$1" == "-h" ]; then
+        exit
+fi
+
 #Path to bin folder
 bin=/projects/home/agombolay3/data/bin
 
