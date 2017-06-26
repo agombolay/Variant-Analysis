@@ -17,14 +17,14 @@ function usage () {
 #Command-line options
 while getopts "s:f:r:p:i:d:h" opt; do
     case $opt in
-	  s ) sample=$OPTARG ;;
-    f ) forward=$OPTARG ;;
-	  r ) reverse=$OPTARG ;;
-    p ) path=$OPTARG ;;
-	  i ) index=$OPTARG ;;
-	  d ) directory=$OPTARG ;;
-    #Print usage statement
-    h ) usage ;;
+    	s ) sample=$OPTARG ;;
+    	f ) forward=$OPTARG ;;
+	r ) reverse=$OPTARG ;;
+    	p ) path=$OPTARG ;;
+	i ) index=$OPTARG ;;
+	d ) directory=$OPTARG ;;
+    	#Print usage statement
+    	h ) usage ;;
     esac
 done
 
