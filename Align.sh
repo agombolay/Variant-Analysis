@@ -52,11 +52,11 @@ statistics=$directory/Variant-Calling/Alignment/Bowtie2.log
 
 #############################################################################################################################
 #STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-java -jar $path/trimmomatic-0.36.jar PE -phred33 $read1 $read2 Paired1-Out.fq.gz Unpaired1-Out.fq.gz Paired2-Out.fq.gz \
-Unpaired2-Out.fq.gz ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:15 LEADING:10 TRAILING:10 MINLEN:75
+java -jar $path/trimmomatic-0.36.jar PE -phred33 $read1 $read2 Paired1-Output.fq Unpaired1-Output.fq Paired2-Output.fq \
+Unpaired2-Output.fq ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:15 LEADING:10 TRAILING:10 MINLEN:75
 
 #STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
-bowtie2 -x $index -1 Paired1-Out.fq.gz -2 Paired2-Out.fq.gz 2> $statistics -S temp.sam
+bowtie2 -x $index -1 Paired1-Output.fq -2 Paired2-Output.fq 2> $statistics -S temp.sam
 
 #STEP 3: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
 samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index $mapped
