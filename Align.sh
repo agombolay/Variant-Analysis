@@ -33,6 +33,11 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
+samples=("YS486" "CM3" "CM6" "CM9" "CM10" "CM11" "CM12" "CM41")
+
+#Determine coordinates
+for sample in ${samples[@]}; do
+
 #############################################################################################################################
 #Create Directory
 mkdir -p $directory/Variant-Calling/Alignment
@@ -58,3 +63,5 @@ samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index 
 
 #Remove temporary files
 rm -f Paired1-Out.fq.gz Unpaired1-Out.fq.gz Paired2-Out.fq.gz Unpaired2-Out.fq.gz temp.sam
+
+done
