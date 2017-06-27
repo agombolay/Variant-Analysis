@@ -45,14 +45,14 @@ for sample in ${samples[@]}; do
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
 	#Add read groups to alignment file
-  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=temp1.bam \
-	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
+  	#java -jar $picard AddOrReplaceReadGroups I=$mapped O=temp1.bam \
+	#RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
   	#Mark duplicates (account for PCR duplicates)
-  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
+  	#java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
 
 	#Call variants with GATK's HaplotypeCaller tool
-#	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
+	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
 
 done
   
