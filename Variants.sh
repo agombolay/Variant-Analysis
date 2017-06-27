@@ -30,6 +30,7 @@ fi
 #Path to Picard java files
 picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
+snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
 #Input file
 mapped=$directory/Variant-Calling/Alignment/$sample.bam
@@ -56,11 +57,13 @@ for sample in ${samples[@]}; do
 done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
-java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
---variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
+#java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
+#--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
+
+java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf -R $reference -o Variants.vcf
 
 #Filter variants in VCF file by quality score with SnpSift
-cat Variants.vcf | java -jar $bin/snpEff/SnpSift.jar filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
 
 #Remove temporary files
 temp1.bam temp2.bam Variants.vcf
