@@ -45,7 +45,7 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 for sample in ${samples[@]}; do
 
 	#Add read groups to alignment file
-  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam \
+  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=temp1.bam \
 	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
   	#Mark duplicates (account for PCR duplicates)
