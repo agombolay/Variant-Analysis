@@ -32,9 +32,6 @@ picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
 snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
-#Input file
-mapped=$directory/Variant-Calling/Alignment/$sample.bam
-
 #Reference
 reference=$directory/Variant-Calling/References/sgdModified.fa
 
@@ -43,6 +40,9 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 
 #Determine coordinates
 for sample in ${samples[@]}; do
+
+	#Input file
+	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
 	#Add read groups to alignment file
   	java -jar $picard AddOrReplaceReadGroups I=$mapped O=temp1.bam \
