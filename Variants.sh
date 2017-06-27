@@ -39,14 +39,14 @@ mapped=$directory/Variant-Calling/Alignment/$sample.bam
 reference=$directory/Variant-Calling/References/sgdModified.fa
 
 #Create FASTA dictionary file
-java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
+#java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
 
 #Determine coordinates
-#for sample in ${samples[@]}; do
+for sample in ${samples[@]}; do
 
 	#Add read groups to alignment file
-#  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam \
-#	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
+  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam \
+	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
   	#Mark duplicates (account for PCR duplicates)
 #  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
