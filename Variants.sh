@@ -48,8 +48,12 @@ for sample in ${samples[@]}; do
   	#java -jar $picard AddOrReplaceReadGroups I=$mapped O=temp1.bam \
 	#RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
+	#samtools index temp1.bam
+	
   	#Mark duplicates (account for PCR duplicates)
   	#java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
+
+	#samtools index temp2.bam
 
 	#Call variants with GATK's HaplotypeCaller tool
 	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
