@@ -49,7 +49,7 @@ for sample in ${samples[@]}; do
 	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
   	#Mark duplicates (account for PCR duplicates)
-#  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
+  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
 
 	#Call variants with GATK's HaplotypeCaller tool
 #	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
@@ -66,4 +66,4 @@ done
 #cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
 
 #Remove temporary files
-rm -f temp1.bam temp2.bam Variants.vcf
+#rm -f temp1.bam temp2.bam Variants.vcf
