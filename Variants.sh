@@ -66,4 +66,4 @@ java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
 #cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
 
 #Remove temporary files
-temp1.bam temp2.bam Variants.vcf
+rm -f temp1.bam temp2.bam Variants.vcf
