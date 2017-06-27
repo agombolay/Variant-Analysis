@@ -68,7 +68,10 @@ done
 #java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf -R $reference -o Variants.vcf
 
 #Filter variants in VCF file by quality score with SnpSift
-cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+#cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
 
+#Create tab-delimited file of variants
+java -jar $gatk -R $reference -T VariantsToTable -V Variants-Filtered.vcf -F CHROM -F POS -F QUAL -o Variants.table
+     
 #Remove temporary files
 #rm -f temp1.bam temp2.bam Variants.vcf
