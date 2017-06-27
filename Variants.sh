@@ -54,7 +54,7 @@ for sample in ${samples[@]}; do
 	#Call variants with GATK's HaplotypeCaller tool
 #	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
 
-#done
+done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
 #java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
