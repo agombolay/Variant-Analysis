@@ -42,28 +42,28 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 java -jar $picard CreateSequenceDictionary R=$reference O=sgdModified.dict
 
 #Determine coordinates
-for sample in ${samples[@]}; do
+#for sample in ${samples[@]}; do
 
 	#Add read groups to alignment file
-  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam \
-	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
+#  	java -jar $picard AddOrReplaceReadGroups I=$sample.bam O=temp1.bam \
+#	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
 
   	#Mark duplicates (account for PCR duplicates)
-  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
+#  	java -jar $picard MarkDuplicates I=temp1.bam O=temp2.bam M=$sample.metrics.txt
 
 	#Call variants with GATK's HaplotypeCaller tool
-	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
+#	java -jar $gatk -I temp2.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
 
-done
+#done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
 #java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
 #--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
-java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf -R $reference -o Variants.vcf
+#java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf -R $reference -o Variants.vcf
 
 #Filter variants in VCF file by quality score with SnpSift
-cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+#cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
 
 #Remove temporary files
 temp1.bam temp2.bam Variants.vcf
