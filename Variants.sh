@@ -57,7 +57,7 @@ for sample in ${samples[@]}; do
 	samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSorted.bam; samtools index $sample-MarkDupsSorted.bam
 
 	#Call variants with GATK's HaplotypeCaller tool
-	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference
+	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample-raw.g.vcf -T HaplotypeCaller -R $reference
 
 done
   
@@ -65,13 +65,13 @@ done
 #java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
 #--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
-java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf -R $reference -o Variants.vcf
+#java -jar $gatk -T GenotypeGVCFs --variant YS486-raw.g.vcf --variant CM3-raw.g.vcf -R $reference -o Variants.vcf
 
 #Filter variants in VCF file by quality score with SnpSift
-cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+#cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
 
 #Create tab-delimited file of variants
 #java -jar $gatk -R $reference -T VariantsToTable -V Variants-Filtered.vcf -F CHROM -F POS -F QUAL -o Variants.table
      
 #Remove temporary files
-#rm -f temp1.bam temp2.bam Variants.vcf
+#rm -f YS486-raw.g.vcf CM3-raw.g.vcf Variants.vcf
