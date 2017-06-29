@@ -47,7 +47,7 @@ for sample in ${samples[@]}; do
 
 	#Add read groups to alignment file
   	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
-	RGLB=$sample RGPL=Illumina RGPU=HiSeq RGSM=$sample 
+	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 
 	samtools sort $sample-AddRG.bam -o $sample-AddRGSorted.bam; samtools index $sample-AddRGSorted.bam
 	
