@@ -37,7 +37,7 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 dictionary=$directory/Variant-Calling/References/sgdModified.dict
 
 #Create FASTA dictionary file
-#java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
+java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
 
 #Determine coordinates
 for sample in ${samples[@]}; do
@@ -59,7 +59,7 @@ for sample in ${samples[@]}; do
 	#Call variants with GATK's HaplotypeCaller tool
 	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample-raw.g.vcf -T HaplotypeCaller -R $reference
 
-#done
+done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
 java -jar $gatk -T GenotypeGVCFs -V YS486-raw.g.vcf -V CM3-raw.g.vcf -V CM6-raw.g.vcf -V CM9-raw.g.vcf \
