@@ -68,7 +68,9 @@ dictionary=$directory/Variant-Calling/References/sgdModified.dict
 java -jar $gatk -T GenotypeGVCFs --variant YS486-raw.g.vcf --variant CM3-raw.g.vcf -R $reference -o Variants.vcf
 
 #Filter variants in VCF file by quality score with SnpSift
-#cat Variants.vcf | java -jar $snpSift filter "( QUAL >= 30 )" > Variants-Filtered.vcf
+#cat Variants.vcf | java -jar $snpSift filter "((QUAL >= 30) && (DP >= 25))" > Variants-Filtered.vcf
+
+#java -jar $snpSift extractFields Variants-Filtered.vcf "CHROM" "POS" "ID" "REF" "ALT" "GEN[*].GT" > out.vcf
 
 #Create tab-delimited file of variants
 #java -jar $gatk -R $reference -T VariantsToTable -V Variants-Filtered.vcf -F CHROM -F POS -F QUAL -o Variants.table
