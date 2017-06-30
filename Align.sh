@@ -41,7 +41,7 @@ for sample in ${samples[@]}; do
 
 	#Output files
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
-	statistics=$directory/Variant-Calling/Alignment/Bowtie2.log
+	statistics=$directory/Variant-Calling/Alignment/$sample-Bowtie2.log
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
 	java -jar $path/trimmomatic-0.36.jar PE -phred33 $read1 $read2 Paired1-Output.fq Unpaired1-Output.fq \
