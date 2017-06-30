@@ -37,7 +37,7 @@ reference=$directory/Variant-Calling/References/sgdModified.fa
 dictionary=$directory/Variant-Calling/References/sgdModified.dict
 
 #Create FASTA dictionary file
-#java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
+java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
 
 #Determine coordinates
 for sample in ${samples[@]}; do
