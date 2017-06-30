@@ -70,7 +70,7 @@ java -jar $gatk -T GenotypeGVCFs --variant YS486-raw.g.vcf --variant CM3-raw.g.v
 #Filter variants in VCF file by quality score with SnpSift
 #cat Variants.vcf | java -jar $snpSift filter "((QUAL >= 30) && (DP >= 25))" > Variants-Filtered.vcf
 
-#java -jar $snpSift extractFields Variants-Filtered.vcf "CHROM" "POS" "ID" "REF" "ALT" "GEN[*].GT" > out.vcf
+#java -jar $snpSift extractFields Variants-Filtered.vcf "CHROM" "POS" "REF" "ALT" "GEN[*].GT" > out.vcf
 
 #awk -F'\t' '$6!=$7 {print $0}' out.vcf
 
