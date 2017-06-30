@@ -72,6 +72,8 @@ java -jar $gatk -T GenotypeGVCFs --variant YS486-raw.g.vcf --variant CM3-raw.g.v
 
 #java -jar $snpSift extractFields Variants-Filtered.vcf "CHROM" "POS" "ID" "REF" "ALT" "GEN[*].GT" > out.vcf
 
+#awk -F'\t' '$6!=$7 {print $0}' out.vcf
+
 #Create tab-delimited file of variants
 #java -jar $gatk -R $reference -T VariantsToTable -V Variants-Filtered.vcf -F CHROM -F POS -F QUAL -o Variants.table
      
