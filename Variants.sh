@@ -33,8 +33,8 @@ gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
 snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
 #Reference
-reference=$directory/Variant-Calling/References/sgdModified.fa
-dictionary=$directory/Variant-Calling/References/sgdModified.dict
+reference=$directory/Variant-Calling/References/sacCer2.fa
+dictionary=$directory/Variant-Calling/References/sacCer2.dict
 
 #Create FASTA dictionary file
 java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
