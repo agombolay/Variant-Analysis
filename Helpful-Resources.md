@@ -7,3 +7,10 @@
 * [Known variants/sites](https://software.broadinstitute.org/gatk/documentation/article.php?id=1247)
 * [Assembly using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
 
+* [VCF Format](http://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
+
+* [SNPSift]()
+    * [Filter](http://snpeff.sourceforge.net/SnpSift.html#filter)
+    * [Extract](http://snpeff.sourceforge.net/SnpSift.html#Extract)
+    
+* [SNP Filtering Tutorial](http://ddocent.com/filtering/)
