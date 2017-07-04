@@ -11,10 +11,8 @@
      * [Assembly using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
 
 * Filter variants in VCF
-     * [SNPSift]()
-        * [Filter](http://snpeff.sourceforge.net/SnpSift.html#filter)
-        * [Extract](http://snpeff.sourceforge.net/SnpSift.html#Extract)
-     * [SNPeff](http://snpeff.sourceforge.net/SnpSift.html)
+     * [SNPeff](http://snpeff.sourceforge.net/)
+     * [SNPSift](http://snpeff.sourceforge.net/SnpSift.html)
      * [VCF Format](http://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
      * [SNP Filtering Tutorial](http://ddocent.com/filtering/)
     
