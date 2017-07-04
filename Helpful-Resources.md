@@ -1,7 +1,7 @@
 # Helpful Resources
 
-* Variant Calling  
-      * [HaplotypeCaller](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_haplotypecaller_HaplotypeCaller.php)
+* Variant Calling
+     * [HaplotypeCaller](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_haplotypecaller_HaplotypeCaller.php)
       * [GenotypeGVCFs](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php)
       * [Known variants/sites](https://software.broadinstitute.org/gatk/documentation/article.php?id=1247)
 
