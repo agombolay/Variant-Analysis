@@ -8,11 +8,11 @@
 
 * [De novo assembly](https://github.com/lexnederbragt/INF-BIO9120_fall2013_de_novo_assembly/blob/master/practicals/02_Mapping_reads_to_an_assembly.md)
      * [SPADES Manual](http://cab.spbu.ru/software/spades/)
-     * [Assembly using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
+     * [Using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
 
 * Filter variants in VCF
      * [SNPeff](http://snpeff.sourceforge.net/)
      * [SNPSift](http://snpeff.sourceforge.net/SnpSift.html)
+     * [Tutorial](http://ddocent.com/filtering/)
      * [VCF Format](http://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
-     * [SNP Filtering Tutorial](http://ddocent.com/filtering/)
     
