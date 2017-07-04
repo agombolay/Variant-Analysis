@@ -37,24 +37,24 @@ reference=$directory/Variant-Calling/References/sacCer2.fa
 dictionary=$directory/Variant-Calling/References/sacCer2.dict
 
 #Create FASTA dictionary file
-java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
+#java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
 
 #Determine coordinates
 for sample in ${samples[@]}; do
 
 	#Input file
-	mapped=$directory/Variant-Calling/Alignment/$sample.bam
+	#mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
 	#Add read groups to alignment file
-  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
-	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
+  	#java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
+	#RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 
-	samtools sort $sample-AddRG.bam -o $sample-AddRGSorted.bam; samtools index $sample-AddRGSorted.bam
+	#samtools sort $sample-AddRG.bam -o $sample-AddRGSorted.bam; samtools index $sample-AddRGSorted.bam
 	
   	#Mark duplicates (account for PCR duplicates)
-  	java -jar $picard MarkDuplicates I=$sample-AddRGSorted.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
+  	#java -jar $picard MarkDuplicates I=$sample-AddRGSorted.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
-	samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSorted.bam; samtools index $sample-MarkDupsSorted.bam
+	#samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSorted.bam; samtools index $sample-MarkDupsSorted.bam
 
 	#Call variants with GATK's HaplotypeCaller tool
 	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample-raw.g.vcf -T HaplotypeCaller -R $reference
