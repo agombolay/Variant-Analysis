@@ -57,7 +57,7 @@ for sample in ${samples[@]}; do
 	#samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSorted.bam; samtools index $sample-MarkDupsSorted.bam
 
 	#Call variants with GATK's HaplotypeCaller tool
-	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample-raw.g.vcf -T HaplotypeCaller -R $reference
+	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample-raw.g.vcf -T HaplotypeCaller -R $reference -ploidy 1
 
 done
   
