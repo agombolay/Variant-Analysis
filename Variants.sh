@@ -52,20 +52,20 @@ for sample in ${samples[@]}; do
   	#java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
 	#RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 
-	#samtools sort $sample-AddRG.bam -o $sample-AddRGSorted.bam; samtools index $sample-AddRGSorted.bam
+	#samtools sort $sample-AddRG.bam -o $sample-AddRGSort.bam; samtools index $sample-AddRGSort.bam
 	
   	#Mark duplicates (account for PCR duplicates)
-  	#java -jar $picard MarkDuplicates I=$sample-AddRGSorted.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
+  	#java -jar $picard MarkDuplicates I=$sample-AddRGSort.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
-	#samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSorted.bam; samtools index $sample-MarkDupsSorted.bam
+	#samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSort.bam; samtools index $sample-MarkDupsSort.bam
 
 	#Call variants with GATK's HaplotypeCaller tool
-	java -jar $gatk -I $sample-MarkDupsSorted.bam -ERC GVCF -o $sample-raw.g.vcf -T HaplotypeCaller -R $reference -ploidy 1
+	java -jar $gatk -I $sample-MarkDupsSort.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference -ploidy 1
 
 done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
-java -jar $gatk -T GenotypeGVCFs -V YS486-raw.g.vcf -V CM3-raw.g.vcf -V CM6-raw.g.vcf -V CM9-raw.g.vcf \
--V CM10-raw.g.vcf -V CM11-raw.g.vcf -V CM12-raw.g.vcf -V CM41-raw.g.vcf -R $reference -o Variants.vcf
+java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
+--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
 #Remove temporary files
