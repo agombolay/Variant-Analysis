@@ -1,9 +1,21 @@
 # Helpful Resources
-* [SNPeff](http://snpeff.sourceforge.net/SnpSift.html)
-* [SPADES](http://cab.spbu.ru/software/spades/)
-* [HaplotypeCaller](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_haplotypecaller_HaplotypeCaller.php)
-* [GenotypeGVCFs](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php)
-* [De novo assembly](https://github.com/lexnederbragt/INF-BIO9120_fall2013_de_novo_assembly/blob/master/practicals/02_Mapping_reads_to_an_assembly.md)
-* [Known variants/sites](https://software.broadinstitute.org/gatk/documentation/article.php?id=1247)
-* [Assembly using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
 
+* Variant Calling
+     * [HaplotypeCaller](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_haplotypecaller_HaplotypeCaller.php)
+     * [GenotypeGVCFs](https://software.broadinstitute.org/gatk/documentation/tooldocs/current/org_broadinstitute_gatk_tools_walkers_variantutils_GenotypeGVCFs.php)
+     * [Known variants/sites](https://software.broadinstitute.org/gatk/documentation/article.php?id=1247)
+
+* [VCF file Format](http://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
+
+* [De novo assembly](https://github.com/lexnederbragt/INF-BIO9120_fall2013_de_novo_assembly/blob/master/practicals/02_Mapping_reads_to_an_assembly.md)
+     * [Using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
+     * [SPADES Manual](http://cab.spbu.ru/software/spades/)
+
+* Filter variants in VCF
+     * [SNPeff](http://snpeff.sourceforge.net/)
+     * [SNPSift](http://snpeff.sourceforge.net/SnpSift.html)
+     * [Tutorial](http://ddocent.com/filtering/)
+     
+* [Calling variants on cohorts of samples using the HaplotypeCaller in GVCF mode](https://software.broadinstitute.org/gatk/documentation/article.php?id=3893)
+
+* [What does one do with the raw VCF output of joint genotyping many gVCF files?](http://gatkforums.broadinstitute.org/gatk/discussion/7478/what-does-one-do-with-the-raw-vcf-output-of-joint-genotyping-many-gvcf-files)
