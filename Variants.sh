@@ -46,18 +46,18 @@ dictionary=$directory/Variant-Calling/References/sacCer2.dict
 for sample in ${samples[@]}; do
 
 	#Input file
-	#mapped=$directory/Variant-Calling/Alignment/$sample.bam
+	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
 	#Add read groups to alignment file
-  	#java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
-	#RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
+  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
+	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 
-	#samtools sort $sample-AddRG.bam -o $sample-AddRGSort.bam; samtools index $sample-AddRGSort.bam
+	samtools sort $sample-AddRG.bam -o $sample-AddRGSort.bam; samtools index $sample-AddRGSort.bam
 	
   	#Mark duplicates (account for PCR duplicates)
-  	#java -jar $picard MarkDuplicates I=$sample-AddRGSort.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
+  	java -jar $picard MarkDuplicates I=$sample-AddRGSort.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
-	#samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSort.bam; samtools index $sample-MarkDupsSort.bam
+	samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSort.bam; samtools index $sample-MarkDupsSort.bam
 
 	#Call variants with GATK's HaplotypeCaller tool
 	java -jar $gatk -I $sample-MarkDupsSort.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference -ploidy 1
