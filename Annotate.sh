@@ -3,4 +3,4 @@
 #Author: Alli Gombolay
 #This script annotates variants in VCF file
 
-java -Xmx4g -jar snpEff.jar Saccharomyces_cerevisiae examples/test.chr22.vcf > test.chr22.ann.vcf
+java -Xmx4g -jar snpEff.jar Saccharomyces_cerevisiae Variants.vcf > Variants-Annotated.vcf
