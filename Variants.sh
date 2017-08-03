@@ -60,10 +60,10 @@ for sample in ${samples[@]}; do
 	samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSort.bam; samtools index $sample-MarkDupsSort.bam
 	
 	#Base quality score recalibration
-	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-MarkDupsSort.bam -knownSites sacCer3.vcf -o table
+	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-MarkDupsSort.bam -knownSites sacCer3.vcf -o recal.grp
    
    	#Create a recalibrated BAM with print reads
-   	java -jar GenomeAnalysisTK.jar -T PrintReads -R reference.fasta -I input.bam -BQSR recalibration_report.grp -o output.bam
+   	java -jar GenomeAnalysisTK.jar -T PrintReads -R reference.fasta -I $sample-MarkDupsSort.bam -BQSR recal.grp -o $sample-Recal.bam
    
 	#Call variants with HaplotypeCaller (ploidy=1 )
 	java -jar $gatk -T HaplotypeCaller -R $reference -I $sample-MarkDupsSort.bam -ERC GVCF -o $sample.g.vcf -ploidy 1
