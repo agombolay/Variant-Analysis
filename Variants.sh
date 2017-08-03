@@ -48,17 +48,20 @@ for sample in ${samples[@]}; do
 	#Input file
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
-	#Add read groups to alignment file
+	#Add read groups
   	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
 	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 
 	samtools sort $sample-AddRG.bam -o $sample-AddRGSort.bam; samtools index $sample-AddRGSort.bam
 	
-  	#Mark duplicates (account for PCR duplicates)
+  	#Mark duplicates
   	java -jar $picard MarkDuplicates I=$sample-AddRGSort.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
 
 	samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSort.bam; samtools index $sample-MarkDupsSort.bam
-
+	
+	#Base quality score recalibration
+	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-MarkDupsSort.bam -knownSites .vcf -o recal.table
+   
 	#Call variants with GATK's HaplotypeCaller tool
 	java -jar $gatk -I $sample-MarkDupsSort.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference -ploidy 1
 
