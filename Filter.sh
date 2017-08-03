@@ -3,7 +3,7 @@
 #Author: Alli Gombolay
 #This script annotates and filters variants in VCF file
 
-SnpEff=/projects/home/agombolay3/data/bin/snpEff/SnpEff.jar
+SnpEff=/projects/home/agombolay3/data/bin/snpEff/snpEff.jar
 SnpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
 java -Xmx4g -jar $SnpEff Saccharomyces_cerevisiae Variants.vcf > Variants-Annotated.vcf
