@@ -48,19 +48,27 @@ for sample in ${samples[@]}; do
 	#Input file
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
-	#Add read groups to alignment file
-  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-AddRG.bam \
+	#Add read groups
+  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-RG.bam \
 	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 
-	samtools sort $sample-AddRG.bam -o $sample-AddRGSort.bam; samtools index $sample-AddRGSort.bam
+	#Sort and index BAM
+	samtools sort $sample-RG.bam -o $sample-RGSort.bam; samtools index $sample-RGSort.bam
 	
-  	#Mark duplicates (account for PCR duplicates)
-  	java -jar $picard MarkDuplicates I=$sample-AddRGSort.bam O=$sample-MarkDups.bam M=$sample.metrics.txt
+  	#Mark duplicate reads
+  	java -jar $picard MarkDuplicates I=$sample-RGSort.bam O=$sample-DeDup.bam M=$sample.txt
 
-	samtools sort $sample-MarkDups.bam -o $sample-MarkDupsSort.bam; samtools index $sample-MarkDupsSort.bam
-
-	#Call variants with GATK's HaplotypeCaller tool
-	java -jar $gatk -I $sample-MarkDupsSort.bam -ERC GVCF -o $sample.g.vcf -T HaplotypeCaller -R $reference -ploidy 1
+	#Sort and index BAM
+	samtools sort $sample-DeDup.bam -o $sample-DeDupSort.bam; samtools index $sample-DeDupSort.bam
+	
+	#Base quality score recalibration
+	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-DeDupSort.bam -knownSites sacCer3.vcf -o recal.grp
+   
+   	#Create a recalibrated BAM with print reads
+   	java -jar $gatk -T PrintReads -R $reference -I $sample-DeDupSort.bam -BQSR recal.grp -o $sample-Recalibrated.bam
+   
+	#Call variants with HaplotypeCaller (ploidy=1 )
+	java -jar $gatk -T HaplotypeCaller -R $reference -I $sample-Recalibrated.bam -ERC GVCF -o $sample.g.vcf -ploidy 1
 
 done
   
@@ -69,3 +77,4 @@ java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --var
 --variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
 #Remove temporary files
+rm -f *-RG.bam *-RGSort.bam *-DeDup.bam *-DeDupSort.bam *-Recalibrated.bam
