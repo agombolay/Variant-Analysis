@@ -64,14 +64,7 @@ for sample in ${samples[@]}; do
 
 done
   
-#Joint genotyping with GATK's GenotypeGVCFs tool--ROUND 1
-java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
---variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
-
-#Take SNPs that you have the highest confidence in and use that set as database of known SNPs
-java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-MarkDupsSort.bam -knownSites Variants.vcf -o recal_data.table
-
-#Joint genotyping with GATK's GenotypeGVCFs tool--ROUND 2
+#Joint genotyping with GATK's GenotypeGVCFs tool
 java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
 --variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
