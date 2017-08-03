@@ -62,9 +62,10 @@ for sample in ${samples[@]}; do
 	#Base quality score recalibration
 	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-MarkDupsSort.bam -knownSites sacCer3.vcf -o table
    
+   	#Create a recalibrated BAM with print reads
    	java -jar GenomeAnalysisTK.jar -T PrintReads -R reference.fasta -I input.bam -BQSR recalibration_report.grp -o output.bam
    
-	#Call variants with GATK's HaplotypeCaller tool
+	#Call variants with HaplotypeCaller (ploidy=1 )
 	java -jar $gatk -T HaplotypeCaller -R $reference -I $sample-MarkDupsSort.bam -ERC GVCF -o $sample.g.vcf -ploidy 1
 
 done
