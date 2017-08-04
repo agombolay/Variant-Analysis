@@ -46,7 +46,7 @@ for sample in ${samples[@]}; do
 	statistics=$directory/Variant-Calling/Alignment/$sample-Bowtie2.log
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $trimmomatic PE -phred33 $read1 $read2 R1Paired.fq R1Unpaired.fq
+	java -jar $trimmomatic PE -phred33 $read1 $read2 R1Paired.fq R1Unpaired.fq \
 	R2Paired.fq R2Unpaired.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
