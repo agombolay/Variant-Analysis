@@ -33,14 +33,14 @@ gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
 snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
 #Reference
-reference=$directory/Variant-Calling/References/sacCer2.fa
-dictionary=$directory/Variant-Calling/References/sacCer2.dict
+reference=$directory/Variant-Calling/References/sacCer3.fa
+dictionary=$directory/Variant-Calling/References/sacCer3.dict
 
 #Create FASTA index
-#samtools faidx sacCer2.fa
+samtools faidx sacCer3.fa
 
 #Create FASTA dictionary file
-#java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
+java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
 
 #Determine coordinates
 for sample in ${samples[@]}; do
