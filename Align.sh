@@ -36,17 +36,18 @@ for sample in ${samples[@]}; do
 	mkdir -p $directory/Variant-Calling/Alignment
 
 	#Input files
+	trimmomatic=$path/trimmomatic-0.36.jar
+	adapters=$path/adapters/NexteraPE-PE.fa
 	read1=$directory/Variant-Calling/Sequencing/$sample-R1.fastq
 	read2=$directory/Variant-Calling/Sequencing/$sample-R2.fastq
-
+	
 	#Output files
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 	statistics=$directory/Variant-Calling/Alignment/$sample-Bowtie2.log
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $path/trimmomatic-0.36.jar PE -phred33 $read1 $read2 Paired1-Output.fq Unpaired1-Output.fq \
-	Paired2-Output.fq Unpaired2-Output.fq ILLUMINACLIP:$path/adapters/NexteraPE-PE.fa:2:30:10 SLIDINGWINDOW:4:15 \
-	LEADING:10 TRAILING:10 MINLEN:75
+	java -jar $trimmomatic PE -phred33 $read1 $read2 Read1Paired-Output.fq Read1Unpaired-Output.fq
+	Read2Paired-Output.fq Read2Unpaired-Output.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
 	bowtie2 -x $index -1 Paired1-Output.fq -2 Paired2-Output.fq 2> $statistics -S temp.sam
@@ -55,6 +56,6 @@ for sample in ${samples[@]}; do
 	samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index $mapped
 
 	#Remove temporary files
-	rm -f Paired1-Output.fq Unpaired1-Output.fq Paired2-Output.fq Unpaired2-Output.fq temp.sam
+	rm -f Read1Paired-Output.fq Read1Unpaired-Output.fq Read2Paired-Output.fq Read2Unpaired-Output.fq temp.sam
 
 done
