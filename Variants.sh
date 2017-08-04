@@ -67,7 +67,7 @@ for sample in ${samples[@]}; do
    	#Create a recalibrated BAM with print reads
    	java -jar $gatk -T PrintReads -R $reference -I $sample-DeDupSort.bam -BQSR recal.grp -o $sample-Recalibrated.bam
    
-	#Call variants with HaplotypeCaller (ploidy=1 )
+	#Call variants with HaplotypeCaller (ploidy=1)
 	java -jar $gatk -T HaplotypeCaller -R $reference -I $sample-Recalibrated.bam -ERC GVCF -o $sample.g.vcf -ploidy 1
 
 done
