@@ -46,16 +46,16 @@ for sample in ${samples[@]}; do
 	statistics=$directory/Variant-Calling/Alignment/$sample-Bowtie2.log
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $trimmomatic PE -phred33 $read1 $read2 R1Paired.fq R1Unpaired.fq \
-	R2Paired.fq R2Unpaired.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
+	java -jar $trimmomatic PE -phred33 $read1 $read2 R1Paired-Output.fq R1Unpaired.fq \
+	R2Paired-Output.fq R2Unpaired.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
-	bowtie2 -x $index -1 R1Paired.fq -2 R2Paired.fq 2> $statistics -S temp.sam
+	bowtie2 -x $index -1 R1Paired-Output.fq -2 R2Paired-Output.fq 2> $statistics -S temporary.sam
 
 	#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
-	samtools view -bSf3 -F256 temp.sam | samtools sort - -o $mapped; samtools index $mapped
+	samtools view -bS -f3 -F256 temporary.sam | samtools sort - -o $mapped; samtools index $mapped
 
 	#Remove temporary files
-	rm -f R1Paired.fq R1Unpaired.fq R2Paired.fq R2Unpaired.fq temp.sam
+	rm -f R1Paired.fq R1Unpaired.fq R2Paired.fq R2Unpaired.fq temporary.sam
 
 done
