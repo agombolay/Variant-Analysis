@@ -6,7 +6,7 @@
 #Usage statement
 function usage () {
         echo "Usage: Align.sh [options]
-		-s Sample name(YS486, CM10, CM11, CM12, CM3, CM41, CM6, & CM9)
+		-s Sample name(YS486 CM3 CM6 CM9 CM10 CM11 CM12 CM41)
 	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
 	      	-i Basename of Bowtie2 index (e.g., sacCer3, pombe, ecoli, mm9, or hg38)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
