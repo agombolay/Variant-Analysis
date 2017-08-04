@@ -8,7 +8,7 @@ function usage () {
         echo "Usage: Align.sh [options]
 		-s Sample name(YS486, CM1, CM2, etc.)
 	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
-	      	-i Basename of Bowtie2 index (e.g., sacCer2, pombe, ecoli, mm9, or hg38)
+	      	-i Basename of Bowtie2 index (e.g., sacCer3, pombe, ecoli, mm9, or hg38)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
 }
 
