@@ -27,17 +27,17 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
-#Path to java files
+#Java files
 picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
 snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
-#Reference input files
+#Reference files
 reference=$directory/Variant-Calling/References/sacCer3.fa
 dictionary=$directory/Variant-Calling/References/sacCer3.dict
 
 #Create FASTA index
-samtools faidx $reference
+samtools faidx $directory/Variant-Calling/References/sacCer3.fa
 
 #Create FASTA dictionary file
 java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
