@@ -37,7 +37,7 @@ reference=$directory/Variant-Calling/References/sacCer3.fa
 dictionary=$directory/Variant-Calling/References/sacCer3.dict
 
 #Create FASTA index
-samtools faidx $directory/Variant-Calling/References/sacCer3.fa
+samtools faidx $reference
 
 #Create FASTA dictionary file
 java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
