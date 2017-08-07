@@ -6,8 +6,8 @@
 #Usage statement
 function usage () {
         echo "Usage: Variants.sh [options]
-		-s Sample name (YS486, CM1, CM2, etc.)
-		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
+		-s Sample names (YS486, CM1, CM2, etc.)
+		-d /projects/home/agombolay3/data/repository"
 }
 
 #Command-line options
