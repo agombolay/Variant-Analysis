@@ -63,7 +63,7 @@ for sample in ${samples[@]}; do
 	samtools sort $sample-DeDup.bam -o $sample-DeDupSort.bam; samtools index $sample-DeDupSort.bam
 	
 	#Base quality score recalibration
-	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-DeDupSort.bam -knownSites $VCF -o recal.grp
+	#java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-DeDupSort.bam -knownSites $VCF -o recal.grp
    
    	#Create a recalibrated BAM with print reads
    	#java -jar $gatk -T PrintReads -R $reference -I $sample-DeDupSort.bam -BQSR recal.grp -o $sample-Recalibrated.bam
