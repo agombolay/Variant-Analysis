@@ -41,20 +41,25 @@ for sample in ${samples[@]}; do
 	read1=$directory/Variant-Calling/Sequencing/$sample-R1.fastq
 	read2=$directory/Variant-Calling/Sequencing/$sample-R2.fastq
 	
-	#Output files
-	mapped=$directory/Variant-Calling/Alignment/$sample.bam
-	statistics=$directory/Variant-Calling/Alignment/$sample-Bowtie2.log
+	#Output directory
+	output=$directory/Variant-Calling/Alignment
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $trimmomatic PE -phred33 $read1 $read2 R1Paired-Output.fq R1Unpaired.fq \
-	R2Paired-Output.fq R2Unpaired.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
+	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/R1Paired.fq $output/R1Unpaired.fq \
+	R2Paired.fq R2Unpaired.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
 
 	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
-	bowtie2 -x $index -1 R1Paired-Output.fq -2 R2Paired-Output.fq 2> $statistics -S temporary.sam
+	bowtie2 -x $index -1 $output/R1Paired.fq -2 $output/R2Paired.fq 2> $output/$sample-Bowtie2.log -S $output/temporary.sam
 
-	#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
-	samtools view -bS -f3 -F260 temporary.sam | samtools sort - -o $mapped; samtools index $mapped
+	#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort BAM file
+	samtools view -bS -f3 -F260 $output/temporary.sam | samtools sort - -o $output/$sample.bam
+	
+	#Index BAM file
+	samtools index $output/$sample.bam
 
+	#STEP 4: Calculate genome coverage
+	bedtools genomecov -ibam $mapped -d -g sacCer3.bed > 
+	
 	#Remove temporary files
 	rm -f R1Paired.fq R1Unpaired.fq R2Paired.fq R2Unpaired.fq temporary.sam
 
