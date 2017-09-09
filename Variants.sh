@@ -30,7 +30,6 @@ fi
 #Java files
 picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
-snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 
 #Reference files
 reference=$directory/Variant-Calling/References/sacCer3.fa
