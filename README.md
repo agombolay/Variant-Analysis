@@ -10,4 +10,4 @@
 
 
 # Reference Genome
-* (sacCer3 (2011 Yeast Genome))[http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/]
+* [sacCer3 (2011 Yeast Genome)](http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/)
