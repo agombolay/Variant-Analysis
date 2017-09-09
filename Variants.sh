@@ -67,7 +67,7 @@ done
 #Joint genotyping with GATK's GenotypeGVCFs tool
 java -jar $gatk -T GenotypeGVCFs --variant $output/YS486.g.vcf --variant $output/CM3.g.vcf --variant $output/CM6.g.vcf \
 --variant $output/CM9.g.vcf --variant $output/CM10.g.vcf --variant $output/CM11.g.vcf --variant $output/CM12.g.vcf \
---variant $output/CM41.g.vcf -R $reference -o Variants.vcf
+--variant $output/CM41.g.vcf -R $reference -o $output/Variants.vcf
 
 #Remove temporary files
 rm -f $output/$sample*.bam $output/recal.grp
