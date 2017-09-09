@@ -5,10 +5,10 @@ Find sequence variations in the mutant samples that are responsible for enhancin
 
 ### Controls
 YS 486-1, YS486-2, CM 281-1, and CM281-2
-* YS486-1 and YS486-2 were combined into one file
+* YS486-1 and YS486-2 were combined into one FASTQ
 
 ### Cases (libraries treated with EMS)
-CM 3, CM 6, CM 9, CM 10, CM 11, CM 12, and CM 41
+* CM 3, CM 6, CM 9, CM 10, CM 11, CM 12, and CM 41
 
 ### Methods
 1. Trim reads: Trimmomatic
