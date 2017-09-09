@@ -70,4 +70,4 @@ java -jar $gatk -T GenotypeGVCFs --variant $output/YS486.g.vcf --variant $output
 --variant $output/CM41.g.vcf -R $reference -o Variants.vcf
 
 #Remove temporary files
-rm -f *-RG.bam *-RGSort.bam *-DeDup.bam *-DeDupSort.bam *-Recalibrated.bam
+rm -f $output/$sample-*.bam $output/recal.grp
