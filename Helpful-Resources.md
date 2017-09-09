@@ -7,7 +7,7 @@
 
 * [VCF file Format](http://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
 
-* Filter variants in VCF: [SNPeff](http://snpeff.sourceforge.net/), [SNPSift](http://snpeff.sourceforge.net/SnpSift.html, and [Tutorial](http://ddocent.com/filtering/)
+* Filter variants in VCF: [SNPeff](http://snpeff.sourceforge.net/), [SNPSift](http://snpeff.sourceforge.net/SnpSift.html), and [Tutorial](http://ddocent.com/filtering/)
      
 * [Calling variants on cohorts of samples using the HaplotypeCaller in GVCF mode](https://software.broadinstitute.org/gatk/documentation/article.php?id=3893)
 
