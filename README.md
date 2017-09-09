@@ -5,5 +5,5 @@
 3. Examine unmapped reads with FastQC
 4. Determine alignment coverage of genome
 5. Add read groups and mark duplicates: Picard Tools
-6. Variant calling and joint genotyping: GATK Tools
-7. Filter VCF file: SnpSift
+6. Variant calling and joint genotyping (Halotype GVCF): GATK Tools
+7. Filter VCF file based on quality, depth, and mutation type: SnpSift
