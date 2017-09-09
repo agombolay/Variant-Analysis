@@ -12,3 +12,7 @@
 # Reference Genome
 * [sacCer3 FASTA from UCSC](http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/)
 * [sacCer3 VCF from Ensembl](https://www.ensembl.org/info/data/ftp/index.html)
+
+
+# Controls
+* YS486-1 and YS486-2 were combined into one FASTQ file
