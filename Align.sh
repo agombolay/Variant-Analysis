@@ -32,9 +32,6 @@ fi
 #Determine coordinates
 for sample in ${samples[@]}; do
 
-	#Create Directory
-	mkdir -p $directory/Variant-Calling/Alignment
-
 	#Input files
 	trimmomatic=$path/trimmomatic-0.36.jar
 	adapters=$path/adapters/NexteraPE-PE.fa
@@ -44,7 +41,11 @@ for sample in ${samples[@]}; do
 	
 	#Output directory
 	output=$directory/Variant-Calling/Alignment
+	
+	#Create Directory
+	mkdir -p $output
 
+#############################################################################################################################
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
 	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/Paired1.fq $output/Unpaired1.fq \
 	$output/Paired2.fq $output/Unpaired2.fq ILLUMINACLIP:$adapters:2:30:10 MINLEN:75
