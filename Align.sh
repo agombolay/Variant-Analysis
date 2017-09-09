@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Author: Alli Gombolay
-#This script aligns controls to reference genome
+#This script aligns cases and controls to reference genome
 
 #Usage statement
 function usage () {
