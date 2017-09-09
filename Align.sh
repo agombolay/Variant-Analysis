@@ -38,6 +38,7 @@ for sample in ${samples[@]}; do
 	#Input files
 	trimmomatic=$path/trimmomatic-0.36.jar
 	adapters=$path/adapters/NexteraPE-PE.fa
+	bed=$directory/Variant-Calling/References/sacCer3.bed
 	read1=$directory/Variant-Calling/Sequencing/$sample-R1.fastq
 	read2=$directory/Variant-Calling/Sequencing/$sample-R2.fastq
 	
@@ -45,11 +46,11 @@ for sample in ${samples[@]}; do
 	output=$directory/Variant-Calling/Alignment
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/R1Pair.fq $output/R1Unpair.fq \
-	$output/R2Pair.fq $output/R2Unpair.fq ILLUMINACLIP:$adapters:2:30:10 MINLEN:75
+	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/Paired1.fq $output/Unpaired1.fq \
+	$output/Paired2.fq $output/Unpaired2.fq ILLUMINACLIP:$adapters:2:30:10 MINLEN:75
 		
 	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
-	bowtie2 -x $index -1 $output/R1Paired.fq -2 $output/R2Paired.fq --no-mixed --no-discordant \
+	bowtie2 -x $index -1 $output/Paired1.fq -2 $output/Paired2.fq --no-mixed --no-discordant \
 	2> $output/$sample-Bowtie2.log -S $output/temporary.sam
 
 	#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort BAM file
@@ -59,9 +60,9 @@ for sample in ${samples[@]}; do
 	samtools index $output/$sample.bam
 
 	#STEP 4: Calculate genome coverage
-	bedtools genomecov -d -ibam $mapped -g sacCer3.bed > $output/$sample.bed
+	bedtools genomecov -d -ibam $output/$sample.bam -g $bed > $output/$sample.bed
 	
 	#Remove temporary files
-	rm -f $output/R*Paired.fq $output/R*Unpaired.fq $output/temporary.sam
+	rm -f $output/Paired*.fq $output/Unpaired*.fq $output/temporary.sam
 
 done
