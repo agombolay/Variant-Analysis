@@ -36,6 +36,7 @@ snpSift=/projects/home/agombolay3/data/bin/snpEff/SnpSift.jar
 reference=$directory/Variant-Calling/References/sacCer3.fa
 dictionary=$directory/Variant-Calling/References/sacCer3.dict
 
+#############################################################################################################################
 #Create FASTA index
 samtools faidx $reference
 
