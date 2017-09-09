@@ -27,6 +27,10 @@ if [ "$1" == "-h" ]; then
         exit
 fi
 
+#Input files
+VCF=$directory/Variant-Calling/References/sacCer3.vcf
+mapped=$directory/Variant-Calling/Alignment/$sample.bam
+	
 #Java files
 picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
@@ -42,43 +46,30 @@ output=$directory/Variant-Calling/Variants
 #Create Directory
 mkdir -p $output
 
-#Create FASTA dictionary file
-java -jar $picard CreateSequenceDictionary R=$reference O=$dictionary
-
 #Determine coordinates
 for sample in ${samples[@]}; do
 
-	#Input file
-	VCF=$directory/Variant-Calling/References/sacCer3.vcf
-	mapped=$directory/Variant-Calling/Alignment/$sample.bam
-
 	#Add read groups
-  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$sample-RG.bam \
+  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$output/$sample-RG.bam \
 	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
-
-	#Sort and index BAM
-	samtools sort $sample-RG.bam -o $sample-RGSort.bam; samtools index $sample-RGSort.bam
 	
   	#Mark duplicate reads
-  	java -jar $picard MarkDuplicates I=$sample-RGSort.bam O=$sample-DeDup.bam M=$sample.txt
+  	java -jar $picard MarkDuplicates I=$output/$sample-RGS.bam O=$output/$sample-DeDup.bam M=$sample.txt
 
-	#Sort and index BAM
-	samtools sort $sample-DeDup.bam -o $sample-DeDupSort.bam; samtools index $sample-DeDupSort.bam
-	
 	#Base quality score recalibration
-	#java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-DeDupSort.bam -knownSites $VCF -o recal.grp
+	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-DeDup.bam -knownSites $VCF -o $output/recal.grp
    
    	#Create a recalibrated BAM with print reads
-   	#java -jar $gatk -T PrintReads -R $reference -I $sample-DeDupSort.bam -BQSR recal.grp -o $sample-Recalibrated.bam
+   	java -jar $gatk -T PrintReads -R $reference -I $output/$sample-DeDup.bam -BQSR $output/recal.grp -o $output/$sample-Recal.bam
    
 	#Call variants with HaplotypeCaller (ploidy=1)
-	#java -jar $gatk -T HaplotypeCaller -R $reference -I $sample-Recalibrated.bam -ERC GVCF -o $sample.g.vcf -ploidy 1
+	java -jar $gatk -T HaplotypeCaller -R $reference -I $output/$sample-Recal.bam -ERC GVCF -o $sample.g.vcf -ploidy 1
 
 done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
-#java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
-#--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
+java -jar $gatk -T GenotypeGVCFs --variant YS486.g.vcf --variant CM3.g.vcf --variant CM6.g.vcf --variant CM9.g.vcf \
+--variant CM10.g.vcf --variant CM11.g.vcf --variant CM12.g.vcf --variant CM41.g.vcf -R $reference -o Variants.vcf
 
 #Remove temporary files
-#rm -f *-RG.bam *-RGSort.bam *-DeDup.bam *-DeDupSort.bam *-Recalibrated.bam
+rm -f *-RG.bam *-RGSort.bam *-DeDup.bam *-DeDupSort.bam *-Recalibrated.bam
