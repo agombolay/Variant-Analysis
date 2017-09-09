@@ -6,7 +6,7 @@
 #Usage statement
 function usage () {
         echo "Usage: Variants.sh [options]
-		-s Sample names (YS486, CM1, CM2, etc.)
+		-s Sample names (YS486 CM3 CM6 CM9 CM10 CM11 CM12 CM41)
 		-d /projects/home/agombolay3/data/repository"
 }
 
