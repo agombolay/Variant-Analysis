@@ -10,4 +10,5 @@
 
 
 # Reference Genome
-* [sacCer3 (2011 Yeast Genome Build from UCSC)](http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/)
+* [sacCer3 FASTA from UCSC](http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/)
+* [sacCer3 VCF from Ensembl](https://www.ensembl.org/info/data/ftp/index.html)
