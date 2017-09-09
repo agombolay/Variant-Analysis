@@ -1,3 +1,12 @@
+# Goal
+Find sequence variations in the mutant samples that are responsible for enhancing DSB repair via homologous recombination (HR) using transcript RNA as template
+
+# Controls
+YS 486-1, YS486-2, CM 281-1, and CM281-2
+
+# Cases
+CM 3, CM 6, CM 9, CM 10, CM 11, CM 12, and CM 41
+
 # Variant Analysis
 
 1. Trim reads: Trimmomatic
