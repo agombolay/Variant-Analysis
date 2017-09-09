@@ -1,6 +1,6 @@
 # Variant Calling
 
-** Goal **: Find variants that enhance DSB repair via homologous recombination using transcript RNA as template
+**Goal**: Find variants that enhance DSB repair via homologous recombination using transcript RNA as template
 
 ### Controls
 YS 486-1, YS486-2, CM 281-1, and CM281-2
