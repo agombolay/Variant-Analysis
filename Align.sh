@@ -45,8 +45,8 @@ for sample in ${samples[@]}; do
 	output=$directory/Variant-Calling/Alignment
 
 	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/R1Paired.fq $output/R1Unpaired.fq \
-	R2Paired.fq R2Unpaired.fq ILLUMINACLIP:$adapters:2:30:10 SLIDINGWINDOW:4:15 MINLEN:75
+	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/R1Pair.fq $output/R1Unpair.fq \
+	$output/R2Pair.fq $output/R2Unpair.fq ILLUMINACLIP:$adapters:2:30:10 MINLEN:75
 		
 	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
 	bowtie2 -x $index -1 $output/R1Paired.fq -2 $output/R2Paired.fq --no-mixed --no-discordant \
