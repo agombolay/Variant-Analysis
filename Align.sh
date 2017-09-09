@@ -53,7 +53,7 @@ for sample in ${samples[@]}; do
 	bowtie2 -x $index -1 R1Paired-Output.fq -2 R2Paired-Output.fq 2> $statistics -S temporary.sam
 
 	#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort/index BAM file
-	samtools view -bS -f3 -F256 temporary.sam | samtools sort - -o $mapped; samtools index $mapped
+	samtools view -bS -f3 -F260 temporary.sam | samtools sort - -o $mapped; samtools index $mapped
 
 	#Remove temporary files
 	rm -f R1Paired.fq R1Unpaired.fq R2Paired.fq R2Unpaired.fq temporary.sam
