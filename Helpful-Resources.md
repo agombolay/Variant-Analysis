@@ -7,10 +7,6 @@
 
 * [VCF file Format](http://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/)
 
-* [De novo assembly](https://github.com/lexnederbragt/INF-BIO9120_fall2013_de_novo_assembly/blob/master/practicals/02_Mapping_reads_to_an_assembly.md)
-     * [Using SPADES](http://inf-biox121.readthedocs.io/en/2015/Assembly/practicals/06_Assembly_using_SPADES.html)
-     * [SPADES Manual](http://cab.spbu.ru/software/spades/)
-
 * Filter variants in VCF
      * [SNPeff](http://snpeff.sourceforge.net/)
      * [SNPSift](http://snpeff.sourceforge.net/SnpSift.html)
