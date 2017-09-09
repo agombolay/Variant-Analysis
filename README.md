@@ -1,7 +1,7 @@
 # Variant Calling
 
 ### Goal
-Find sequence variations in the mutant samples that are responsible for enhancing DSB repair via homologous recombination (HR) using transcript RNA as template
+Find variations in cases that are responsible for enhancing DSB repair via homologous recombination using transcript RNA as template
 
 ### Controls
 YS 486-1, YS486-2, CM 281-1, and CM281-2
