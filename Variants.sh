@@ -50,7 +50,7 @@ for sample in ${samples[@]}; do
 	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 	
   	#Mark duplicate reads
-  	java -jar $picard MarkDuplicates I=$output/$sample-1.bam O=$output/$sample-2.bam M=$sample.txt
+  	java -jar $picard MarkDuplicates I=$output/$sample-1.bam O=$output/$sample-2.bam M=$output/$sample.txt
 
 	#Base quality score recalibration
 	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-2.bam -knownSites $VCF -o $output/recal.grp
