@@ -22,6 +22,10 @@ YS 486-1, YS486-2, CM 281-1, and CM281-2
 * [sacCer3 FASTA from UCSC](http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/)
 * [sacCer3 VCF from Ensembl](https://www.ensembl.org/info/data/ftp/index.html)
 
+```
+sed -i -e 's/chr//g' sacCer3.bed
+```
+
 ### Set-up
 ```
 #Create reference index
