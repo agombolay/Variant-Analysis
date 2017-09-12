@@ -28,7 +28,10 @@ sed -i -e 's/chr//g' sacCer3.bed
 
 ### Calculate average coverage
 ```
-awk '{ total += $3 } END { print total/NR }' BED
+bedtools genomecov -d -ibam BAM -g BED > Coverage.bed
+```
+```
+awk '{ total += $3 } END { print total/NR }' Coverage.bed
 ```
 
 ### Set-up
