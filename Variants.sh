@@ -53,12 +53,18 @@ for sample in ${samples[@]}; do
   	#Mark duplicate reads
   	java -jar $picard MarkDuplicates I=$output/$sample-1.bam O=$output/$sample-2.bam M=$output/$sample.txt
 
+	#Index BAM file
+	samtools index $output/$sample-2.bam
+	
 	#Base quality score recalibration
-	java -jar $gatk -T BaseRecalibrator -R $reference -I $output/$sample-2.bam -knownSites $VCF -o $output/recal.grp
+	java -jar $gatk -T BaseRecalibrator -R $reference -I $output/$sample-2.bam -knownSites $VCF -o $output/$sample-recal
    
    	#Create a recalibrated BAM with print reads
-   	java -jar $gatk -T PrintReads -R $reference -I $output/$sample-2.bam -BQSR $output/recal.grp -o $output/$sample-3.bam
+   	java -jar $gatk -T PrintReads -R $reference -I $output/$sample-2.bam -BQSR $output/$sample-recal -o $output/$sample-3.bam
    
+   	#Index BAM file
+	samtools index $output/$sample-3.bam
+	
 	#Call variants with HaplotypeCaller (ploidy=1)
 	java -jar $gatk -T HaplotypeCaller -ploidy 1 -R $reference -I $output/$sample-3.bam -ERC GVCF -o $output/$sample.g.vcf
 
