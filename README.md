@@ -26,6 +26,11 @@ YS 486-1, YS486-2, CM 281-1, and CM281-2
 sed -i -e 's/chr//g' sacCer3.bed
 ```
 
+### Calculate average coverage
+```
+awk '{ total += $3 } END { print total/NR }' BED
+```
+
 ### Set-up
 ```
 #Create reference index
