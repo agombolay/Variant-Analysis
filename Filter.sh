@@ -22,4 +22,4 @@ awk -F'\t' '$13!='synonymous_variant'||$14!='synonymous_variant'||$15!='synonymo
 ||$17!='synonymous_variant' {print $0}' Variants3.tab > Variants.tab
 
 #Remove temporary files
-rm -f Variants1.tab Variants2.tab Variants4.tab
+rm -f Variants1.tab Variants2.tab Variants3.tab
