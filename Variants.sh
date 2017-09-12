@@ -26,7 +26,8 @@ done
 if [ "$1" == "-h" ]; then
         exit
 fi
-	
+
+#############################################################################################################################
 #Java files
 picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
@@ -38,7 +39,7 @@ dictionary=$directory/Variant-Calling/References/sacCer3.dict
 #Create output directory
 output=$directory/Variant-Calling/Variants; mkdir -p $output
 
-#Determine coordinates
+#############################################################################################################################
 for sample in ${samples[@]}; do
 
 	#Input files
