@@ -46,27 +46,27 @@ for sample in ${samples[@]}; do
 	mapped=$directory/Variant-Calling/Alignment/$sample.bam
 
 	#Add read groups
-  	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$output/$sample-1.bam \
-	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
+  	#java -jar $picard AddOrReplaceReadGroups I=$mapped O=$output/$sample-1.bam \
+	#RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 	
   	#Mark duplicate reads
-  	java -jar $picard MarkDuplicates I=$output/$sample-1.bam O=$output/$sample-2.bam M=$output/$sample.txt
+  	#java -jar $picard MarkDuplicates I=$output/$sample-1.bam O=$output/$sample-2.bam M=$output/$sample.txt
 
 	#Base quality score recalibration
-	java -jar $gatk -T BaseRecalibrator -R $reference -I $sample-2.bam -knownSites $VCF -o $output/recal.grp
+	java -jar $gatk -T BaseRecalibrator -R $reference -I $output/$sample-2.bam -knownSites $VCF -o $output/recal.grp
    
    	#Create a recalibrated BAM with print reads
-   	java -jar $gatk -T PrintReads -R $reference -I $output/$sample-2.bam -BQSR $output/recal.grp -o $output/$sample-3.bam
+   	#java -jar $gatk -T PrintReads -R $reference -I $output/$sample-2.bam -BQSR $output/recal.grp -o $output/$sample-3.bam
    
 	#Call variants with HaplotypeCaller (ploidy=1)
-	java -jar $gatk -T HaplotypeCaller -ploidy 1 -R $reference -I $output/$sample-3.bam -ERC GVCF -o $output/$sample.g.vcf
+	#java -jar $gatk -T HaplotypeCaller -ploidy 1 -R $reference -I $output/$sample-3.bam -ERC GVCF -o $output/$sample.g.vcf
 
 done
   
 #Joint genotyping with GATK's GenotypeGVCFs tool
-java -jar $gatk -T GenotypeGVCFs --variant $output/YS486.g.vcf --variant $output/CM3.g.vcf --variant $output/CM6.g.vcf \
---variant $output/CM9.g.vcf --variant $output/CM10.g.vcf --variant $output/CM11.g.vcf --variant $output/CM12.g.vcf \
---variant $output/CM41.g.vcf -R $reference -o $output/Variants.vcf
+#java -jar $gatk -T GenotypeGVCFs --variant $output/YS486.g.vcf --variant $output/CM3.g.vcf --variant $output/CM6.g.vcf \
+#--variant $output/CM9.g.vcf --variant $output/CM10.g.vcf --variant $output/CM11.g.vcf --variant $output/CM12.g.vcf \
+#--variant $output/CM41.g.vcf -R $reference -o $output/Variants.vcf
 
 #Remove temporary files
-rm -f $output/$sample*.bam $output/recal.grp
+#rm -f $output/$sample*.bam $output/recal.grp
