@@ -46,13 +46,12 @@ for sample in ${samples[@]}; do
 	mkdir -p $output
 
 #############################################################################################################################
-	#STEP 1: Trim FASTQ files based on quality and Illumina adapter content
-	java -jar $trimmomatic PE -phred33 $read1 $read2 $output/Paired1.fq $output/Unpaired1.fq \
-	$output/Paired2.fq $output/Unpaired2.fq ILLUMINACLIP:$adapters:2:30:10 MINLEN:75
-		
-	#STEP 2: Align pairs of reads to reference genome and save Bowtie2 log file
-	bowtie2 -x $index -1 $output/Paired1.fq -2 $output/Paired2.fq --no-mixed --no-discordant \
-	2> $output/$sample-Bowtie2.log -S $output/temporary.sam
+	#STEP 1: Trim based on quality and adapters
+	trim_galore --paired --length 50 $read1 $read2 -o $output
+	
+	#STEP 2: Align pairs of reads to reference genome and save log file
+	bowtie2 -x $index -1 $output/$sample*_val_1.fq -2 $output/$sample*_val_2.fq \
+	--no-mixed --no-discordant 2> $output/$sample-Bowtie2.log -S $output/temporary.sam
 
 	#STEP 3: Extract mapped reads, convert SAM file to BAM, and sort BAM file
 	samtools view -bS -f3 -F260 $output/temporary.sam | samtools sort - -o $output/$sample.bam
