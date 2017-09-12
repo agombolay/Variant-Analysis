@@ -33,7 +33,7 @@ picard=/projects/home/agombolay3/data/bin/picard.jar
 gatk=/projects/home/agombolay3/data/bin/GenomeAnalysisTK.jar
 
 #Reference files
-reference=$directory/Variant-Calling/References/sacCer3.fa
+ref=$directory/Variant-Calling/References/sacCer3.fa
 dictionary=$directory/Variant-Calling/References/sacCer3.dict
 
 #Create output directory
@@ -57,16 +57,16 @@ for sample in ${samples[@]}; do
 	samtools index $output/$sample-2.bam
 	
 	#Base quality score recalibration
-	java -jar $gatk -T BaseRecalibrator -R $reference -I $output/$sample-2.bam -knownSites $VCF -o $output/$sample-recal
+	java -jar $gatk -T BaseRecalibrator -R $ref -I $output/$sample-2.bam -knownSites $VCF -o $output/$sample.recal
    
    	#Create a recalibrated BAM with print reads
-   	java -jar $gatk -T PrintReads -R $reference -I $output/$sample-2.bam -BQSR $output/$sample-recal -o $output/$sample-3.bam
+   	java -jar $gatk -T PrintReads -R $ref -I $output/$sample-2.bam -BQSR $output/$sample.recal -o $output/$sample-3.bam
    
    	#Index BAM file
 	samtools index $output/$sample-3.bam
 	
 	#Call variants with HaplotypeCaller (ploidy=1)
-	java -jar $gatk -T HaplotypeCaller -ploidy 1 -R $reference -I $output/$sample-3.bam -ERC GVCF -o $output/$sample.g.vcf
+	java -jar $gatk -T HaplotypeCaller -ploidy 1 -R $ref -I $output/$sample-3.bam -ERC GVCF -o $output/$sample.g.vcf
 
 done
   
@@ -76,4 +76,4 @@ done
 #--variant $output/CM41.g.vcf -R $reference -o $output/Variants.vcf
 
 #Remove temporary files
-#rm -f $output/$sample*.bam $output/recal.grp
+#rm -f $output/$sample*.bam $output/$sample.recal
