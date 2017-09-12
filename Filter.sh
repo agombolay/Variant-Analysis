@@ -12,7 +12,7 @@ java -Xmx4g -jar $SnpEff Saccharomyces_cerevisiae Variants.vcf > Variants-Annota
 cat Variants-Annotated.vcf | java -jar $SnpSift filter "((QUAL >= 30) && (DP >= 25))" > Variants1.tab
 
 #Extract fields from VCF file
-java -jar $SnpSift extractFields Variants1.tab "CHROM" "POS" "REF" "ALT" "GEN[*].GT" "ANN[*].EFFECT" > Variants2.tab
+java -jar $SnpSift extractFields Variants1.tab "CHROM" "POS" "REF" "ALT" "GEN[*].GT" "ANN[*].IMPACT:" > Variants2.tab
 
 #Remove variants where genotype of control = cases
 awk -F'\t' '$12!=$5||$12!=$6||$12!=$7||$12!=$8||$12!=$9||$12!=$10||$12!=$11 {print $0}' Variants2.tab > Variants3.tab
