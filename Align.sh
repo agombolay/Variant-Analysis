@@ -60,6 +60,6 @@ for sample in ${samples[@]}; do
 	samtools index $output/$sample.bam
 
 	#Remove temporary files
-	rm -f $output/Paired*.fq $output/Unpaired*.fq $output/temporary.sam
+	rm -f $output/$sample*.fq $output/temporary.sam
 
 done
