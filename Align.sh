@@ -6,18 +6,16 @@
 #Usage statement
 function usage () {
         echo "Usage: Align.sh [options]
+		-i Basename of Bowtie2 index (sacCer3)
 		-s Sample names (YS486 CM3 CM6 CM9 CM10 CM11 CM12 CM41)
-	      	-p Path (e.g., /projects/home/agombolay3/data/bin/Trimmomatic-0.36)
-	      	-i Basename of Bowtie2 index (e.g., sacCer3, pombe, ecoli, mm9, or hg38)
 		-d Local user directory (e.g., /projects/home/agombolay3/data/repository)"
 }
 
 #Command-line options
-while getopts "s:p:i:d:h" opt; do
+while getopts "i:s:d:h" opt; do
     case $opt in
-	s ) samples=$OPTARG ;;
-        p ) path=$OPTARG ;;
 	i ) index=$OPTARG ;;
+	s ) samples=$OPTARG ;;
 	d ) directory=$OPTARG ;;
         #Print usage statement
         h ) usage ;;
