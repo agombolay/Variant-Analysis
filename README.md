@@ -33,6 +33,10 @@ bedtools genomecov -d -ibam BAM -g BED > Coverage.bed
 ```
 awk '{ total += $3 } END { print total/NR }' Coverage.bed
 ```
+```
+#Count 0's
+grep -w 0$
+```
 
 ### Set-up
 ```
