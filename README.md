@@ -48,6 +48,7 @@ grep -w 0$
 ```
 #Create reference index
 samtools faidx reference.fa
+cut -f1,2 reference.fa.fai > BED
 ```
 ```
 #Create reference dictionary file
