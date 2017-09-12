@@ -50,6 +50,9 @@ for sample in ${samples[@]}; do
   	java -jar $picard AddOrReplaceReadGroups I=$mapped O=$output/$sample-1.bam \
 	RGLB=$sample-library RGPL=Illumina RGPU=HiSeq RGSM=$sample-sample 
 	
+	#Index BAM file
+	samtools index $output/$sample-1.bam
+	
   	#Mark duplicate reads
   	java -jar $picard MarkDuplicates I=$output/$sample-1.bam O=$output/$sample-2.bam M=$output/$sample.txt
 
