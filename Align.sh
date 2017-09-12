@@ -30,6 +30,7 @@ fi
 #Determine coordinates
 for sample in ${samples[@]}; do
 
+#############################################################################################################################
 	#Input files
 	read1=$directory/Variant-Calling/FASTQ-Files/$sample-R1.fastq
 	read2=$directory/Variant-Calling/FASTQ-Files/$sample-R2.fastq
