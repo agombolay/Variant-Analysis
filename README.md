@@ -23,7 +23,11 @@ YS 486-1, YS486-2, CM 281-1, and CM281-2
 * [sacCer3 VCF from Ensembl](https://www.ensembl.org/info/data/ftp/index.html)
 
 ```
+#Change format to match VCF
 sed -i -e 's/chr//g' sacCer3.bed
+```
+```
+sed -i -e 's/M/Mito/g' sacCer3.bed
 ```
 
 ### Calculate average coverage
