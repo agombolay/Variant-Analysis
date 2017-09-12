@@ -60,9 +60,6 @@ for sample in ${samples[@]}; do
 	#Index BAM file
 	samtools index $output/$sample.bam
 
-	#STEP 4: Calculate genome coverage
-	bedtools genomecov -d -ibam $output/$sample.bam -g $bed > $output/$sample.bed
-	
 	#Remove temporary files
 	rm -f $output/Paired*.fq $output/Unpaired*.fq $output/temporary.sam
 
