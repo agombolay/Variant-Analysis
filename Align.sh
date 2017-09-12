@@ -33,9 +33,6 @@ fi
 for sample in ${samples[@]}; do
 
 	#Input files
-	trimmomatic=$path/trimmomatic-0.36.jar
-	adapters=$path/adapters/NexteraPE-PE.fa
-	bed=$directory/Variant-Calling/References/sacCer3.bed
 	read1=$directory/Variant-Calling/FASTQ-Files/$sample-R1.fastq
 	read2=$directory/Variant-Calling/FASTQ-Files/$sample-R2.fastq
 	
