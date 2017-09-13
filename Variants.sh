@@ -79,4 +79,4 @@ done
 #--variant $output/CM41.g.vcf -R $reference -o $output/Variants.vcf
 
 #Remove temporary files
-#rm -f $output/$sample*.bam $output/$sample.recal
+#rm -f $output/$sample*.bam $output/$sample.recal $output/$sample.txt
