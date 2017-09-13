@@ -32,13 +32,10 @@ sed -i -e 's/M/Mito/g' sacCer3.bed
 
 ### Calculate average coverage
 ```
-#Determine coverage at each position
-bedtools genomecov -d -ibam BAM -g BED > Coverage.bed
+#Determine coverage at each position and calculate average coverage
+bedtools genomecov -d -ibam BAM -g BED | awk '{ total += $3 } END { print total/NR }'
 ```
-```
-#Count average coverage at each position
-awk '{ total += $3 } END { print total/NR }' Coverage.bed
-```
+
 ```
 #Count 0's
 grep -w 0$
